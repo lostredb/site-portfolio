@@ -23,7 +23,6 @@
 		"zod": "^3.25.16",
 		"@lunarweb/shared": "workspace:*",
 		"@lunarweb/env": "workspace:*",
-		"@lunarweb/email": "workspace:*",
 		"@lunarweb/logger": "workspace:*",
 		"@lunarweb/redis": "workspace:*",
 		"@lunarweb/files": "workspace:*",

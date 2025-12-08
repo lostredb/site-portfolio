@@ -82,7 +82,7 @@ export function FileCard({
 }) {
 	const serverUrl = import.meta.env.VITE_SERVER_URL;
 	return (
-		<div className="flex items-center justify-between p-4 border rounded-md">
+		<div className="flex items-center justify-between p-4 border border-dashed rounded-md">
 			<div className="flex items-center gap-2">
 				{contentType?.startsWith("image/") ? (
 					<img
@@ -98,7 +98,7 @@ export function FileCard({
 					<div className="relative">
 						<FileIcon className="size-9 text-muted-foreground" />
 						{name.includes(".") && (
-							<div className="absolute bottom-1.5 bg-[#DB1C47] rounded p-0.5 text-primary-foreground uppercase text-[8px]">
+							<div className="absolute bottom-1.5 bg-[#DB1C47] rounded p-0.5 text-white uppercase text-[8px]">
 								{name.split(".").pop()}
 							</div>
 						)}
@@ -109,7 +109,7 @@ export function FileCard({
 						<a
 							href={`${serverUrl}/file/${id}`}
 							download={name}
-							className="cursor-pointer hover:underline hover:text-primary transition"
+							className="cursor-pointer text-white hover:underline hover:text-white/70 transition"
 						>
 							{name}
 						</a>
@@ -128,7 +128,7 @@ export function FileCard({
 								<span>•</span>
 								<svg
 									width="14"
-									height="14"
+									height={"14"}
 									viewBox="0 0 14 14"
 									fill="none"
 									xmlns="http://www.w3.org/2000/svg"
@@ -151,7 +151,7 @@ export function FileCard({
 					</div>
 				</div>
 			</div>
-			<div className="flex gap-1 h-full">
+			<div className="flex gap-1 h-full items-center">
 				{onDelete && (
 					<Button
 						onClick={onDelete}
@@ -160,7 +160,7 @@ export function FileCard({
 						size="icon"
 						className="p-0 size-fit cursor-pointer hover:text-muted-foreground"
 					>
-						<X className="size-4" />
+						<X className="size-4 text-red-500" />
 					</Button>
 				)}
 			</div>
@@ -322,7 +322,7 @@ const FileInput = React.forwardRef<HTMLInputElement, FileInputProps>(
 		return (
 			<div className="flex flex-col gap-4 w-full">
 				<label
-					className={`cursor-pointer w-full py-6 flex items-center justify-center w-full rounded-xl border border-dashed bg-secondary group transition-all ${
+					className={`cursor-pointer py-6 flex items-center justify-center w-full rounded-xl border border-dashed border-black group bg-linear-to-tl from-white/30 to-white/10 transition-all ${
 						isDragging ? "border-primary bg-secondary/80" : ""
 					}`}
 					onDragEnter={handleDragEnter}
@@ -330,13 +330,11 @@ const FileInput = React.forwardRef<HTMLInputElement, FileInputProps>(
 					onDragLeave={handleDragLeave}
 					onDrop={handleDrop}
 				>
-					<div className="flex flex-col justify-center items-center gap-1">
+					<div className="flex flex-col justify-center items-center gap-1 text-white">
 						<UploadIcon />
 						<div className="flex flex-col text-center">
 							<p className="font-medium text-sm">Добавить файлы</p>
-							<p className="text-xs text-muted-foreground">
-								Перетащите его сюда
-							</p>
+							<p className="text-xs text-white/70">Перетащите его сюда</p>
 						</div>
 					</div>
 					<input
@@ -347,7 +345,7 @@ const FileInput = React.forwardRef<HTMLInputElement, FileInputProps>(
 						{...props}
 					/>
 				</label>
-				<div className="flex flex-col gap-2 w-full">
+				<div className="flex flex-col gap-2 w-full max-h-70 overflow-y-auto">
 					{uploadedFiles.map((f) => (
 						<FileCard
 							key={f.id}

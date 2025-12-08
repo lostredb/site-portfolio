@@ -44,20 +44,20 @@ const Input = React.forwardRef<
 			<div className={cn("flex flex-col", className)}>
 				<div
 					className={cn(
-						"relative rounded-md border-2 bg-input/5 h-14 transition-all duration-300",
+						"relative rounded-md border-2 bg-input/5 transition-all duration-300",
 						hasErrors
 							? "border-destructive/80 hover:border-destructive"
 							: "border-input/10 hover:border-input/30",
-						size === "textarea" ? "h-fit min-h-[120px]" : "",
+						size === "textarea" ? "h-fit" : "",
 					)}
 				>
 					{prefix && (
-						<div className="absolute px-3 h-14 flex items-center justify-center left-0">
+						<div className="absolute px-3 flex items-center justify-center left-0">
 							{prefix}
 						</div>
 					)}
 					{postfix && (
-						<div className="absolute px-3 h-14 flex items-center justify-center right-0">
+						<div className="absolute px-3 flex items-center justify-center right-0">
 							{postfix}
 						</div>
 					)}

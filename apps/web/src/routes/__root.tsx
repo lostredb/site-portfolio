@@ -77,7 +77,7 @@ function RootDocument() {
 				<HeadContent />
 			</head>
 			<body>
-				<div className="grid h-svh grid-rows-[auto_1fr]">
+				<div className="grid h-fit min-h-screen w-fit min-w-screen grid-rows-[auto_1fr] bg-[#111111]">
 					<div
 						className={cn(
 							"fixed text-center h-screen w-screen size-full z-50 backdrop-blur bg-black/10 items-center justify-center flex flex-col gap-4 transition duration-300 ease-in-out",

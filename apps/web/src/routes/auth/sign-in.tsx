@@ -32,7 +32,7 @@ function SignInPage() {
 				{
 					onSuccess: () => {
 						navigate({
-							to: "/dashboard",
+							to: "/admin/main-admin",
 						});
 						toast.success("Sign in successful");
 					},

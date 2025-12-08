@@ -1,6 +1,6 @@
 import Loader from "@/components/loader";
 import { authClient } from "@/lib/auth-client";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";
 
 export const Route = createFileRoute("/auth/sign-out")({
@@ -8,8 +8,10 @@ export const Route = createFileRoute("/auth/sign-out")({
 });
 
 function SignOutPage() {
+	const navigate = useNavigate({ from: "/auth/sign-out" });
+
 	useEffect(() => {
-		authClient.signOut();
+		authClient.signOut().then(navigate({ to: "/" }));
 	}, []);
 
 	return <Loader />;

@@ -9,11 +9,32 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as CooperationRouteImport } from './routes/cooperation'
+import { Route as ComponentsRouteImport } from './routes/components'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthSignUpRouteImport } from './routes/auth/sign-up'
 import { Route as AuthSignOutRouteImport } from './routes/auth/sign-out'
 import { Route as AuthSignInRouteImport } from './routes/auth/sign-in'
+import { Route as AdminProjectsRouteImport } from './routes/admin/projects'
+import { Route as AdminMainAdminRouteImport } from './routes/admin/main-admin'
+import { Route as AdminCoopRouteImport } from './routes/admin/coop'
 
+const ProjectsRoute = ProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CooperationRoute = CooperationRouteImport.update({
+  id: '/cooperation',
+  path: '/cooperation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsRoute = ComponentsRouteImport.update({
+  id: '/components',
+  path: '/components',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -34,15 +55,42 @@ const AuthSignInRoute = AuthSignInRouteImport.update({
   path: '/auth/sign-in',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminProjectsRoute = AdminProjectsRouteImport.update({
+  id: '/admin/projects',
+  path: '/admin/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminMainAdminRoute = AdminMainAdminRouteImport.update({
+  id: '/admin/main-admin',
+  path: '/admin/main-admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminCoopRoute = AdminCoopRouteImport.update({
+  id: '/admin/coop',
+  path: '/admin/coop',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/components': typeof ComponentsRoute
+  '/cooperation': typeof CooperationRoute
+  '/projects': typeof ProjectsRoute
+  '/admin/coop': typeof AdminCoopRoute
+  '/admin/main-admin': typeof AdminMainAdminRoute
+  '/admin/projects': typeof AdminProjectsRoute
   '/auth/sign-in': typeof AuthSignInRoute
   '/auth/sign-out': typeof AuthSignOutRoute
   '/auth/sign-up': typeof AuthSignUpRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/components': typeof ComponentsRoute
+  '/cooperation': typeof CooperationRoute
+  '/projects': typeof ProjectsRoute
+  '/admin/coop': typeof AdminCoopRoute
+  '/admin/main-admin': typeof AdminMainAdminRoute
+  '/admin/projects': typeof AdminProjectsRoute
   '/auth/sign-in': typeof AuthSignInRoute
   '/auth/sign-out': typeof AuthSignOutRoute
   '/auth/sign-up': typeof AuthSignUpRoute
@@ -50,20 +98,63 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/components': typeof ComponentsRoute
+  '/cooperation': typeof CooperationRoute
+  '/projects': typeof ProjectsRoute
+  '/admin/coop': typeof AdminCoopRoute
+  '/admin/main-admin': typeof AdminMainAdminRoute
+  '/admin/projects': typeof AdminProjectsRoute
   '/auth/sign-in': typeof AuthSignInRoute
   '/auth/sign-out': typeof AuthSignOutRoute
   '/auth/sign-up': typeof AuthSignUpRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth/sign-in' | '/auth/sign-out' | '/auth/sign-up'
+  fullPaths:
+    | '/'
+    | '/components'
+    | '/cooperation'
+    | '/projects'
+    | '/admin/coop'
+    | '/admin/main-admin'
+    | '/admin/projects'
+    | '/auth/sign-in'
+    | '/auth/sign-out'
+    | '/auth/sign-up'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth/sign-in' | '/auth/sign-out' | '/auth/sign-up'
-  id: '__root__' | '/' | '/auth/sign-in' | '/auth/sign-out' | '/auth/sign-up'
+  to:
+    | '/'
+    | '/components'
+    | '/cooperation'
+    | '/projects'
+    | '/admin/coop'
+    | '/admin/main-admin'
+    | '/admin/projects'
+    | '/auth/sign-in'
+    | '/auth/sign-out'
+    | '/auth/sign-up'
+  id:
+    | '__root__'
+    | '/'
+    | '/components'
+    | '/cooperation'
+    | '/projects'
+    | '/admin/coop'
+    | '/admin/main-admin'
+    | '/admin/projects'
+    | '/auth/sign-in'
+    | '/auth/sign-out'
+    | '/auth/sign-up'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ComponentsRoute: typeof ComponentsRoute
+  CooperationRoute: typeof CooperationRoute
+  ProjectsRoute: typeof ProjectsRoute
+  AdminCoopRoute: typeof AdminCoopRoute
+  AdminMainAdminRoute: typeof AdminMainAdminRoute
+  AdminProjectsRoute: typeof AdminProjectsRoute
   AuthSignInRoute: typeof AuthSignInRoute
   AuthSignOutRoute: typeof AuthSignOutRoute
   AuthSignUpRoute: typeof AuthSignUpRoute
@@ -71,6 +162,27 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/projects': {
+      id: '/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cooperation': {
+      id: '/cooperation'
+      path: '/cooperation'
+      fullPath: '/cooperation'
+      preLoaderRoute: typeof CooperationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components': {
+      id: '/components'
+      path: '/components'
+      fullPath: '/components'
+      preLoaderRoute: typeof ComponentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -99,11 +211,38 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthSignInRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/projects': {
+      id: '/admin/projects'
+      path: '/admin/projects'
+      fullPath: '/admin/projects'
+      preLoaderRoute: typeof AdminProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/main-admin': {
+      id: '/admin/main-admin'
+      path: '/admin/main-admin'
+      fullPath: '/admin/main-admin'
+      preLoaderRoute: typeof AdminMainAdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/coop': {
+      id: '/admin/coop'
+      path: '/admin/coop'
+      fullPath: '/admin/coop'
+      preLoaderRoute: typeof AdminCoopRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ComponentsRoute: ComponentsRoute,
+  CooperationRoute: CooperationRoute,
+  ProjectsRoute: ProjectsRoute,
+  AdminCoopRoute: AdminCoopRoute,
+  AdminMainAdminRoute: AdminMainAdminRoute,
+  AdminProjectsRoute: AdminProjectsRoute,
   AuthSignInRoute: AuthSignInRoute,
   AuthSignOutRoute: AuthSignOutRoute,
   AuthSignUpRoute: AuthSignUpRoute,

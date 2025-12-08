@@ -13,11 +13,6 @@ const envSchema = z.object({
 	BETTER_AUTH_SECRET: z.string(),
 	BETTER_AUTH_URL: z.string(),
 
-	EMAIL_HOST: z.string(),
-	EMAIL_PORT: z.coerce.number(),
-	EMAIL_USER: z.string(),
-	EMAIL_PASSWORD: z.string(),
-
 	MAIN_ADMIN_EMAIL: z.string().email(),
 });
 
