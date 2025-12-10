@@ -55,8 +55,8 @@ function SignInPage() {
 	}
 
 	return (
-		<div className="mx-auto w-full mt-10 max-w-md p-6">
-			<h1 className="mb-6 text-center text-3xl font-bold">Welcome Back</h1>
+		<div className="mx-auto w-full h-fit min-h-screen flex flex-col justify-center mt-10 max-w-md p-6 text-white">
+			<h1 className="mb-6 text-center text-3xl font-bold">Вход</h1>
 
 			<form
 				onSubmit={(e) => {
@@ -93,7 +93,7 @@ function SignInPage() {
 					<form.Field name="password">
 						{(field) => (
 							<div className="space-y-2">
-								<Label htmlFor={field.name}>Password</Label>
+								<Label htmlFor={field.name}>Пароль</Label>
 								<Input
 									id={field.name}
 									name={field.name}

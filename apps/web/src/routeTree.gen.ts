@@ -19,6 +19,7 @@ import { Route as AuthSignInRouteImport } from './routes/auth/sign-in'
 import { Route as AdminProjectsRouteImport } from './routes/admin/projects'
 import { Route as AdminMainAdminRouteImport } from './routes/admin/main-admin'
 import { Route as AdminCoopRouteImport } from './routes/admin/coop'
+import { Route as AdminComponentsRouteImport } from './routes/admin/components'
 
 const ProjectsRoute = ProjectsRouteImport.update({
   id: '/projects',
@@ -70,12 +71,18 @@ const AdminCoopRoute = AdminCoopRouteImport.update({
   path: '/admin/coop',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminComponentsRoute = AdminComponentsRouteImport.update({
+  id: '/admin/components',
+  path: '/admin/components',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/components': typeof ComponentsRoute
   '/cooperation': typeof CooperationRoute
   '/projects': typeof ProjectsRoute
+  '/admin/components': typeof AdminComponentsRoute
   '/admin/coop': typeof AdminCoopRoute
   '/admin/main-admin': typeof AdminMainAdminRoute
   '/admin/projects': typeof AdminProjectsRoute
@@ -88,6 +95,7 @@ export interface FileRoutesByTo {
   '/components': typeof ComponentsRoute
   '/cooperation': typeof CooperationRoute
   '/projects': typeof ProjectsRoute
+  '/admin/components': typeof AdminComponentsRoute
   '/admin/coop': typeof AdminCoopRoute
   '/admin/main-admin': typeof AdminMainAdminRoute
   '/admin/projects': typeof AdminProjectsRoute
@@ -101,6 +109,7 @@ export interface FileRoutesById {
   '/components': typeof ComponentsRoute
   '/cooperation': typeof CooperationRoute
   '/projects': typeof ProjectsRoute
+  '/admin/components': typeof AdminComponentsRoute
   '/admin/coop': typeof AdminCoopRoute
   '/admin/main-admin': typeof AdminMainAdminRoute
   '/admin/projects': typeof AdminProjectsRoute
@@ -115,6 +124,7 @@ export interface FileRouteTypes {
     | '/components'
     | '/cooperation'
     | '/projects'
+    | '/admin/components'
     | '/admin/coop'
     | '/admin/main-admin'
     | '/admin/projects'
@@ -127,6 +137,7 @@ export interface FileRouteTypes {
     | '/components'
     | '/cooperation'
     | '/projects'
+    | '/admin/components'
     | '/admin/coop'
     | '/admin/main-admin'
     | '/admin/projects'
@@ -139,6 +150,7 @@ export interface FileRouteTypes {
     | '/components'
     | '/cooperation'
     | '/projects'
+    | '/admin/components'
     | '/admin/coop'
     | '/admin/main-admin'
     | '/admin/projects'
@@ -152,6 +164,7 @@ export interface RootRouteChildren {
   ComponentsRoute: typeof ComponentsRoute
   CooperationRoute: typeof CooperationRoute
   ProjectsRoute: typeof ProjectsRoute
+  AdminComponentsRoute: typeof AdminComponentsRoute
   AdminCoopRoute: typeof AdminCoopRoute
   AdminMainAdminRoute: typeof AdminMainAdminRoute
   AdminProjectsRoute: typeof AdminProjectsRoute
@@ -232,6 +245,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminCoopRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/components': {
+      id: '/admin/components'
+      path: '/admin/components'
+      fullPath: '/admin/components'
+      preLoaderRoute: typeof AdminComponentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -240,6 +260,7 @@ const rootRouteChildren: RootRouteChildren = {
   ComponentsRoute: ComponentsRoute,
   CooperationRoute: CooperationRoute,
   ProjectsRoute: ProjectsRoute,
+  AdminComponentsRoute: AdminComponentsRoute,
   AdminCoopRoute: AdminCoopRoute,
   AdminMainAdminRoute: AdminMainAdminRoute,
   AdminProjectsRoute: AdminProjectsRoute,

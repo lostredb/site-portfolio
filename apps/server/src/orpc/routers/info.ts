@@ -3,23 +3,26 @@ import { protectedProcedure, publicProcedure } from "../orpc";
 import { infoSchema } from "@lunarweb/shared/schemas";
 import { eq } from "drizzle-orm";
 import { info } from "@lunarweb/database/schema";
-import { ServeCached } from "@lunarweb/redis";
+import { InvalidateCached, ServeCached } from "@lunarweb/redis";
 
 export const infoRouter = {
 	get: publicProcedure.handler(async () => {
-		const info = await db.query.info.findFirst({
-			with: {
-				socials: true,
-			},
+		return await ServeCached(["info"], 2 * 60 * 60, async () => {
+			const info = await db.query.info.findFirst({
+				with: {
+					socials: true,
+				},
+			});
+
+			if (!info) {
+				return null;
+			}
+
+			return info;
 		});
-
-		if (!info) {
-			return null;
-		}
-
-		return info;
 	}),
 	post: protectedProcedure.input(infoSchema).handler(async ({ input }) => {
+		await InvalidateCached(["info"]);
 		const Info = await db.query.info.findFirst();
 
 		if (Info) {

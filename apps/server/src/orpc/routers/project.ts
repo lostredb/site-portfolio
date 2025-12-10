@@ -8,18 +8,18 @@ import { InvalidateCached, ServeCached } from "@lunarweb/redis";
 
 export const projectRouter = {
 	get: publicProcedure.handler(async () => {
-		const projects = await db.query.projects.findMany({
-			with: {
-				preview: true,
-				images: true,
-			},
+		const projects = await ServeCached(["projects"], 2 * 60 * 60, async () => {
+			const result = await db.query.projects.findMany({
+				with: {
+					preview: true,
+					images: true,
+				},
+			});
+
+			return result.length > 0 ? result : null;
 		});
 
-		if (projects && projects.length > 0) {
-			return projects;
-		}
-
-		return null;
+		return projects;
 	}),
 
 	create: protectedProcedure
@@ -29,6 +29,7 @@ export const projectRouter = {
 			}),
 		)
 		.handler(async ({ input }) => {
+			await InvalidateCached(["projects"]);
 			const [project] = await db.insert(projects).values(input).returning();
 
 			if (input.imageIds && input.imageIds.length > 0) {
@@ -45,6 +46,7 @@ export const projectRouter = {
 	delete: protectedProcedure
 		.input(paramsSchema)
 		.handler(async ({ input: params }) => {
+			await InvalidateCached(["projects"]);
 			await db.delete(projects).where(eq(projects.id, params.key));
 		}),
 
@@ -56,6 +58,7 @@ export const projectRouter = {
 			}),
 		)
 		.handler(async ({ input }) => {
+			await InvalidateCached(["projects"]);
 			await db.update(projects).set(input).where(eq(projects.id, input.id));
 		}),
 };

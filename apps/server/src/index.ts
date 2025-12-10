@@ -11,6 +11,7 @@ import { env } from "@lunarweb/env";
 import { auth } from "./auth/auth";
 import { createContext } from "./orpc/context";
 import { fileRouter } from "./orpc/routers/file";
+import { languageServices } from "./orpc/routers/language";
 
 const handler = new RPCHandler(appRouter, {
 	plugins: [new ResponseHeadersPlugin()],
@@ -54,6 +55,7 @@ const app = new Elysia({
 		return response ?? new Response("Not Found", { status: 404 });
 	})
 	.use(fileRouter)
+	.use(languageServices)
 	.listen(3000, () => {
 		console.log("Server is running on http://localhost:3000");
 	});

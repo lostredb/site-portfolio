@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input";
 import { queryClient } from "@/utils/orpc";
 import { useForm } from "@tanstack/react-form";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { z } from "zod/v4";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -22,15 +22,20 @@ import { CheckBoxLabel } from "@/components/checkBoxLabel";
 
 export const Route = createFileRoute("/admin/projects")({
 	component: RouteComponent,
+	beforeLoad(ctx) {
+		if (ctx.context.session?.user.role !== "admin") {
+			throw redirect({ to: "/" });
+		}
+	},
 });
 
 const characteristicsArray = [
-	{ title: "Темная тема" },
-	{ title: "Светлая тема" },
-	{ title: "Одностраничный сайт" },
-	{ title: "Многостраничный сайт" },
-	{ title: "Платформа" },
-	{ title: "Портфолио" },
+	{ title: "Темная тема", eng: "Dark theme" },
+	{ title: "Светлая тема", eng: "Light theme" },
+	{ title: "Одностраничный сайт", eng: "Single-page website" },
+	{ title: "Многостраничный сайт", eng: "Multi-page website" },
+	{ title: "Платформа", eng: "Platform" },
+	{ title: "Портфолио", eng: "Portfolio" },
 ];
 
 function RouteComponent() {
@@ -39,6 +44,7 @@ function RouteComponent() {
 	const [previewId, setPreviewId] = useState<string[]>([]);
 	const [loading, setLoading] = useState<boolean>(false);
 	const [characteristics, setCharacteristics] = useState<string[]>([]);
+	const [engCharacteristics, setEngCharacteristics] = useState<string[]>([]);
 
 	const { data: initialData } = useQuery(orpc.project.get.queryOptions());
 
@@ -79,6 +85,7 @@ function RouteComponent() {
 		defaultValues: {
 			title: "",
 			description: "",
+			engDescription: "",
 		},
 		onSubmit: async ({ value }) => {
 			if (previewId.length < 1) {
@@ -89,6 +96,7 @@ function RouteComponent() {
 				preview: previewId[0],
 				imageIds: fileIds,
 				characteristics: characteristics,
+				engCharacteristics: characteristics,
 			});
 		},
 		validators: {
@@ -96,7 +104,16 @@ function RouteComponent() {
 				title: z
 					.string()
 					.min(3, "Минимальный заголвоок должен состоять из 3-х символов"),
+				engTitle: z
+					.string()
+					.min(3, "Минимальный заголвоок должен состоять из 3-х символов"),
 				description: z
+					.string()
+					.min(
+						10,
+						"Минимальное колличество символов в описании должно быть равно 10",
+					),
+				engDescription: z
 					.string()
 					.min(
 						10,
@@ -106,9 +123,16 @@ function RouteComponent() {
 		},
 	});
 
-	const addOrRemoveCharact = (char: string) => {
+	const addOrRemoveCharact = (char: { title: string; eng: string }) => {
 		setCharacteristics((prev) =>
-			prev.includes(char) ? prev.filter((c) => c !== char) : [...prev, char],
+			prev.includes(char.title)
+				? prev.filter((c) => c !== char.title)
+				: [...prev, char.title],
+		);
+		setEngCharacteristics((prev) =>
+			prev.includes(char.eng)
+				? prev.filter((c) => c !== char.eng)
+				: [...prev, char.eng],
 		);
 	};
 
@@ -198,6 +222,36 @@ function RouteComponent() {
 										</div>
 									)}
 								</Field>
+								<Field name="engDescription">
+									{(f) => (
+										<div key={f.name} className="flex flex-col gap-3">
+											<p className="text-white">
+												{f.state.meta.errors[0] ? (
+													<p>
+														{f.state.meta.errors.map((e, index) => (
+															<p
+																key={index.toString() + "EL"}
+																className="text-red-500 text-[12px]"
+															>
+																{e?.message}
+															</p>
+														))}
+													</p>
+												) : (
+													"Описание (Английский)"
+												)}
+											</p>
+											<Input
+												className="text-white"
+												size="textarea"
+												value={f.state.value}
+												onChange={(e) => f.handleChange(e.target.value)}
+												onBlur={f.handleBlur}
+												placeholder="Введите описание"
+											/>
+										</div>
+									)}
+								</Field>
 								<div className="flex gap-3 items-start">
 									<div className="lex flex-col gap-3 w-full">
 										<p className="text-white">Превью</p>
@@ -226,7 +280,7 @@ function RouteComponent() {
 												key={c.title}
 												checked={characteristics.includes(c.title)}
 												title={c.title}
-												onClick={() => addOrRemoveCharact(c.title)}
+												onClick={() => addOrRemoveCharact(c)}
 											/>
 										))}
 									</div>
@@ -263,9 +317,16 @@ function RouteComponent() {
 										className="max-w-64 aspect-video"
 									/>
 								</td>
-								<td className="p-4 border-r border-[#1C1C1C]">{p.title}</td>
 								<td className="p-4 border-r border-[#1C1C1C]">
-									{p.description}
+									<div className="flex flex-col gap-3">
+										<p>{p.title}</p>
+									</div>
+								</td>
+								<td className="p-4 border-r border-[#1C1C1C]">
+									<div className="flex flex-col gap-3">
+										<p>{p.description}</p>
+										<p>{p.engDescription}</p>
+									</div>
 								</td>
 								<td className="p-4 border-r border-[#1C1C1C]">
 									<div className="flex gap-3 justify-center">
@@ -320,7 +381,9 @@ type Project = {
 		contentType: string;
 		deletedAt: Date | null;
 	};
+	engDescription: string;
 	characteristics: string[] | null;
+	engCharacteristics: string[] | null;
 	images: {
 		id: string;
 		projectId: string;
@@ -362,6 +425,7 @@ function EditProject({ project }: { project: Project }) {
 		defaultValues: {
 			title: project.title,
 			description: project.description,
+			engDescription: project.engDescription,
 		},
 		onSubmit: async ({ value }) => {
 			if (previewId.length < 1) {
@@ -372,6 +436,7 @@ function EditProject({ project }: { project: Project }) {
 				preview: previewId[0],
 				imageIds: fileIds,
 				characteristics: characteristics,
+				engCharacteristics: characteristics,
 				id: project.id,
 			});
 		},
@@ -380,7 +445,16 @@ function EditProject({ project }: { project: Project }) {
 				title: z
 					.string()
 					.min(3, "Минимальный заголвоок должен состоять из 3-х символов"),
+				engTitle: z
+					.string()
+					.min(3, "Минимальный заголвоок должен состоять из 3-х символов"),
 				description: z
+					.string()
+					.min(
+						10,
+						"Минимальное колличество символов в описании должно быть равно 10",
+					),
+				engDescription: z
 					.string()
 					.min(
 						10,
@@ -452,6 +526,36 @@ function EditProject({ project }: { project: Project }) {
 								</p>
 							) : (
 								"Описание"
+							)}
+						</p>
+						<Input
+							className="text-white"
+							size="textarea"
+							value={f.state.value}
+							onChange={(e) => f.handleChange(e.target.value)}
+							onBlur={f.handleBlur}
+							placeholder="Введите описание"
+						/>
+					</div>
+				)}
+			</Field>
+			<Field name="engDescription">
+				{(f) => (
+					<div key={f.name} className="flex flex-col gap-3">
+						<p className="text-white">
+							{f.state.meta.errors[0] ? (
+								<p>
+									{f.state.meta.errors.map((e, index) => (
+										<p
+											key={index.toString() + "EL"}
+											className="text-red-500 text-[12px]"
+										>
+											{e?.message}
+										</p>
+									))}
+								</p>
+							) : (
+								"Описание (Английский)"
 							)}
 						</p>
 						<Input

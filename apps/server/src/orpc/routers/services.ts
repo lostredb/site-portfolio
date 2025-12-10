@@ -8,13 +8,15 @@ import { eq } from "drizzle-orm";
 
 export const serviceRouter = {
 	get: publicProcedure.handler(async () => {
-		const services = await db.query.services.findMany();
+		return await ServeCached(["services"], 2 * 60 * 60, async () => {
+			const services = await db.query.services.findMany();
 
-		if (!services) {
-			return null;
-		}
+			if (!services) {
+				return null;
+			}
 
-		return services;
+			return services;
+		});
 	}),
 	create: protectedProcedure.input(serviceSchema).handler(async ({ input }) => {
 		await InvalidateCached(["services"]);

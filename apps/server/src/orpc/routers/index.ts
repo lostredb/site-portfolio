@@ -4,6 +4,7 @@ import { infoRouter } from "./info";
 import { socialRouter } from "./social";
 import { projectRouter } from "./project";
 import { serviceRouter } from "./services";
+import { componentRouter } from "./component";
 
 export const appRouter = {
 	user: userRouter,
@@ -11,6 +12,7 @@ export const appRouter = {
 	social: socialRouter,
 	project: projectRouter,
 	service: serviceRouter,
+	components: componentRouter,
 };
 
 export type AppRouter = typeof appRouter;

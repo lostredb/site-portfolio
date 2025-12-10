@@ -7,6 +7,7 @@ export const someSchema = z.object({
 export const infoSchema = z.object({
 	avatarImage: z.string(),
 	about: z.string(),
+	engAbout: z.string(),
 	link: z.url(),
 });
 
@@ -24,12 +25,18 @@ export const projectSchema = z.object({
 	preview: z.string(),
 	title: z.string(),
 	description: z.string(),
+	engDescription: z.string(),
 	characteristics: z.string().array().optional(),
+	engCharacteristics: z.string().array().optional(),
 });
 
 export const serviceSchema = z.object({
 	title: z.string(),
+	engTitle: z.string(),
 	description: z.string(),
+	engDescription: z.string(),
 	price: z.string(),
+	engPrice: z.string(),
 	deadline: z.string(),
+	engDeadline: z.string(),
 });

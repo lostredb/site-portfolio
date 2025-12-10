@@ -11,7 +11,9 @@ export const projects = pg.pgTable("projects", {
 		.references(() => files.id, { onDelete: "cascade" }),
 	title: pg.text("title").notNull(),
 	description: pg.text("description").notNull(),
+	engDescription: pg.text("eng_description").notNull(),
 	characteristics: pg.text("characteristics").array(),
+	engCharacteristics: pg.text("eng_characteristics").array(),
 });
 
 export const projectToFileAndProjectImagesRelation = relations(

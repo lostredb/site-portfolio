@@ -34,7 +34,7 @@ function RouteComponent() {
 	const { image: initialData } = Route.useLoaderData();
 	const [loading, setLoading] = useState<boolean>(false);
 
-	const { data: info, isLoading } = useQuery(orpc.info.get.queryOptions());
+	const { data: info } = useQuery(orpc.info.get.queryOptions());
 
 	const [fileIds, setFileIds] = useState<string[]>([
 		initialData ? initialData : "",
@@ -73,6 +73,7 @@ function RouteComponent() {
 	const form = useForm({
 		defaultValues: {
 			about: info?.about || "",
+			engAbout: info?.engAbout || "",
 			link: info?.link || "",
 		},
 		onSubmit: async ({ value }) => {
@@ -91,6 +92,9 @@ function RouteComponent() {
 		validators: {
 			onSubmit: z.object({
 				about: z
+					.string()
+					.min(1, "Резюме должно состоять минимум из 1-го символа"),
+				engAbout: z
 					.string()
 					.min(1, "Резюме должно состоять минимум из 1-го символа"),
 				link: z.url("Неккоректная ссылка"),
@@ -125,9 +129,8 @@ function RouteComponent() {
 					}}
 					className="flex flex-col gap-3 w-full msx-w-20"
 				>
-					<Field
-						name="link"
-						children={(f) => (
+					<Field name="link">
+						{(f) => (
 							<div key={f.name} className="flex flex-col gap-3">
 								<p className="text-white">
 									{f.state.meta.errors[0] ? (
@@ -154,10 +157,9 @@ function RouteComponent() {
 								/>
 							</div>
 						)}
-					/>
-					<Field
-						name="about"
-						children={(f) => (
+					</Field>
+					<Field name="about">
+						{(f) => (
 							<div key={f.name} className="flex flex-col gap-3">
 								<p className="text-white">
 									{f.state.meta.errors[0] ? (
@@ -185,7 +187,37 @@ function RouteComponent() {
 								/>
 							</div>
 						)}
-					/>
+					</Field>
+					<Field name="engAbout">
+						{(f) => (
+							<div key={f.name} className="flex flex-col gap-3">
+								<p className="text-white">
+									{f.state.meta.errors[0] ? (
+										<p>
+											{f.state.meta.errors.map((e, index) => (
+												<p
+													key={index.toString() + "EL"}
+													className="text-red-500 text-[12px]"
+												>
+													{e?.message}
+												</p>
+											))}
+										</p>
+									) : (
+										"Резюме (Английсикй)"
+									)}
+								</p>
+								<Input
+									className="text-white"
+									size="textarea"
+									value={f.state.value}
+									onChange={(e) => f.handleChange(e.target.value)}
+									onBlur={f.handleBlur}
+									placeholder="Введите содержимое резюме"
+								/>
+							</div>
+						)}
+					</Field>
 					<Button
 						disabled={pending && loading}
 						type="submit"

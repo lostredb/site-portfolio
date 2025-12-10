@@ -2,9 +2,11 @@ import { Navigation } from "@/components/navigation";
 import { BlurFade } from "@/components/ui/blur-fade";
 import Image from "@/components/ui/image";
 import { TextAnimate } from "@/components/ui/text-animate";
+import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "motion/react";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/")({
 	component: HomeComponent,
@@ -18,14 +20,47 @@ export const Route = createFileRoute("/")({
 function HomeComponent() {
 	const { info: initialData } = Route.useLoaderData();
 
+	const { data: lang } = useQuery({
+		queryKey: ["language"],
+		queryFn: async () => {
+			const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/lang`, {
+				method: "GET",
+				credentials: "include",
+			});
+			if (!res.ok) {
+				toast.error("fetch language error");
+				throw new Error("Failed to fetch language");
+			}
+			const data = await res.json();
+
+			return data.language;
+		},
+	});
+
 	return (
-		<div
-			className=" 
-		bg-black/70
-		bg-[url('../../bg.svg')] bg-center bg-cover
-		min-h-screen h-fit w-full flex flex-col justify-between gap-4 items-center
-		bg-blend-overlay p-4 md:p-0"
-		>
+		<div className="relative min-h-screen overflow-x-hidden w-full flex flex-col justify-between items-center bg-black/50">
+			{/* Фоновый слой */}
+			<div
+				className="absolute inset-0 
+				before:content-[''] before:absolute before:inset-0
+				before:bg-[url('/image.png')] 
+				before:opacity-25 before:mix-blend-overlay before:pointer-events-none
+				after:content-[''] after:absolute after:inset-0
+				after:bg-[url('/bg.svg')] after:bg-center after:bg-cover
+				after:opacity-5 after:pointer-events-none"
+			/>
+			<motion.div
+				initial={{ y: 100, opacity: 0 }}
+				animate={{ y: 0, opacity: 1 }}
+				transition={{ duration: 0.6, stiffness: 100 }}
+				className="md:absolute hidden md:block w-[200vh] -translate-x-1/2 translate-y-1/2 left-1/10 h-[100vh] opacity-30 rounded-[100%] bottom-1/2 mix-blend-soft-light bg-[radial-gradient(88.6vh_47.2vh_at_center,#FAFAFA_0%,transparent_100%)]"
+			/>
+			<motion.div
+				initial={{ y: -100, opacity: 0 }}
+				animate={{ y: 0, opacity: 1 }}
+				transition={{ duration: 0.6, stiffness: 100 }}
+				className="md:absolute hidden md:block w-[400vh] translate-x-1/2 -translate-y-1/2 -top-1 right-70 h-[190vh] opacity-30 rounded-[100%] bottom-1/2 mix-blend-soft-light bg-[radial-gradient(88.6vh_47.2vh_at_center,#FAFAFA_0%,transparent_100%)]"
+			/>
 			<div />
 			<BlurFade
 				direction="up"
@@ -34,7 +69,7 @@ function HomeComponent() {
 					hidden: { y: 100 },
 					visible: { y: 0 },
 				}}
-				className="flex flex-col gap-5 w-full max-w-[630px] rounded-2xl bg-[#1C1C1C] p-5"
+				className="flex flex-col gap-5 w-full max-w-[630px] rounded-2xl bg-[#1C1C1C] p-5 z-50"
 			>
 				<div className="flex md:flex-row flex-col gap-4 md:gap-0 justify-between">
 					<div className="flex gap-2">
@@ -59,7 +94,7 @@ function HomeComponent() {
 								by="word"
 								className="text-white"
 							>
-								Максим Анисимов
+								{lang === "ru" ? "Максим Анисимов" : "Max Anisimov"}
 							</TextAnimate>
 							<TextAnimate
 								as="p"
@@ -67,7 +102,7 @@ function HomeComponent() {
 								by="word"
 								className="text-[#FAFAFA80]"
 							>
-								UI/UX Дизайнер
+								{lang === "ru" ? "UI/UX Дизайнер" : "UI/UX Designer"}
 							</TextAnimate>
 						</motion.div>
 					</div>
@@ -86,7 +121,7 @@ function HomeComponent() {
 						pb-5 pt-3 px-4 active:scale-95 transition-all duration-100 ease-in-out cursor-pointer
 						text-[12px] text-white w-fit"
 						>
-							Обсудить проект
+							{lang === "ru" ? "Обсудить проект" : "Discuss the project"}
 						</button>
 					</motion.a>
 				</div>
@@ -98,9 +133,11 @@ function HomeComponent() {
 					duration={0.4}
 					className="whitespace-pre-line text-white leading-5"
 				>
-					{initialData?.about || ""}
+					{lang === "ru"
+						? initialData?.about || ""
+						: initialData?.engAbout || ""}
 				</TextAnimate>
-				<div className="flex gap-3">
+				<div className="flex flex-wrap gap-3">
 					{initialData?.socials.map((s, index) => (
 						<motion.a
 							initial={{ x: 30, opacity: 0 }}
@@ -114,7 +151,11 @@ function HomeComponent() {
 							target="_blank"
 							href={s?.link || ""}
 						>
-							<Image src={s?.logo || ""} alt="" className="size-9" />
+							<Image
+								src={s?.logo || ""}
+								alt=""
+								className="size-9 rounded-sm overflow-hidden"
+							/>
 						</motion.a>
 					))}
 				</div>

@@ -13,6 +13,7 @@ export const info = pg.pgTable("info", {
 		.varchar("avatar_image", { length: 255 })
 		.references(() => files.id, { onDelete: "cascade" }),
 	about: pg.text("about").notNull(),
+	engAbout: pg.text("eng_about").notNull(),
 	link: pg.text().notNull(),
 });
 
