@@ -93,7 +93,7 @@ function RouteComponent() {
 						</DialogContent>
 					</Dialog>
 				</div>
-				<div className="grid grid-cols-4 gap-3">
+				<div className="md:grid flex flex-col grid-cols-4 gap-3">
 					{components?.map((c) => (
 						<div key={c.id} className="relative">
 							<Image src={c.image} alt="" className="w-full" />
