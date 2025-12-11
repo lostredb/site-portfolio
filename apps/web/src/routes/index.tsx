@@ -117,7 +117,7 @@ function HomeComponent() {
 						<button
 							type="button"
 							className="
-						bg-[url('../../button-bg.svg')] bg-center bg-contain bg-no-repeat select-none
+						bg-[url('/button-bg.svg')] bg-center bg-contain bg-no-repeat select-none
 						pb-5 pt-3 px-4 active:scale-95 transition-all duration-100 ease-in-out cursor-pointer
 						text-[12px] text-white w-fit"
 						>
