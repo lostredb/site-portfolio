@@ -38,7 +38,7 @@ function HomeComponent() {
 	});
 
 	return (
-		<div className="relative min-h-screen overflow-x-hidden w-full flex flex-col justify-between items-center bg-black/50">
+		<div className="relative min-h-screen overflow-x-hidden px-4 md:px-0 w-full flex flex-col justify-between items-center bg-black/50">
 			{/* Фоновый слой */}
 			<div
 				className="absolute inset-0 

@@ -45,10 +45,10 @@ function RouteComponent() {
 					<p className="text-xs select-none">{initialData?.length || 0}</p>
 				</div>
 			</div>
-			<div className="grid grid-cols-4 gap-2">
+			<div className="md:grid flex flex-col grid-cols-4 gap-2">
 				{initialData?.map((c, index) => {
-					let row: number = Math.floor(index / 3);
-					let positionInRow: number = row === 2 ? index % 2 : index % 3;
+					const row: number = Math.floor(index / 3);
+					const positionInRow: number = row === 2 ? index % 2 : index % 3;
 
 					let columnStart: number;
 					if (row === 0) {
