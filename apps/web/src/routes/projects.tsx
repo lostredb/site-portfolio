@@ -52,30 +52,35 @@ function RouteComponent() {
 
 			<div className="md:grid flex flex-col md:gap-12 gap-4 md:grid-cols-3">
 				{initialData?.map((p, index) => (
-					<a href={p.url} key={p.id}>
+					<a
+						href={p.url}
+						key={p.id}
+						target="_blank"
+						style={{
+							gridRowStart:
+								Math.floor(index / 3) * 2 + (index % 3 === 2 ? 2 : 1),
+							gridRowEnd:
+								index % 3 === 0
+									? Math.floor(index / 3) * 2 + 3
+									: Math.floor(index / 3) * 2 + 2,
+						}}
+						className={cn(
+							"flex flex-col gap-2",
+							Math.floor(index / 3) % 2 === 0
+								? index % 3 === 0
+									? "md:col-span-2"
+									: "md:col-start-3"
+								: index % 3 === 0
+									? "md:col-span-2 md:col-start-2"
+									: "md:col-start-1",
+						)}
+					>
 						<BlurFade
 							inView={true}
 							direction="up"
 							duration={0.6}
 							delay={(index % 3) * 0.1}
-							style={{
-								gridRowStart:
-									Math.floor(index / 3) * 2 + (index % 3 === 2 ? 2 : 1),
-								gridRowEnd:
-									index % 3 === 0
-										? Math.floor(index / 3) * 2 + 3
-										: Math.floor(index / 3) * 2 + 2,
-							}}
-							className={cn(
-								"flex flex-col gap-2",
-								Math.floor(index / 3) % 2 === 0
-									? index % 3 === 0
-										? "md:col-span-2"
-										: "md:col-start-3"
-									: index % 3 === 0
-										? "md:col-span-2 md:col-start-2"
-										: "md:col-start-1",
-							)}
+							className="w-full h-full"
 						>
 							<div className="relative">
 								{p.preview?.id && (
