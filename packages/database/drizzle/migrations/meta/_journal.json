@@ -15,6 +15,13 @@
       "when": 1765441697133,
       "tag": "0001_dear_gamora",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1765452405891,
+      "tag": "0002_light_energizer",
+      "breakpoints": true
     }
   ]
 }

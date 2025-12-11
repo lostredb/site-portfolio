@@ -23,6 +23,7 @@ export const paramsSchema = z.object({
 
 export const projectSchema = z.object({
 	preview: z.string(),
+	url: z.url(),
 	title: z.string(),
 	description: z.string(),
 	engDescription: z.string(),

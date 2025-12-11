@@ -9,6 +9,7 @@ export const projects = pg.pgTable("projects", {
 		.varchar("preview", { length: 255 })
 		.notNull()
 		.references(() => files.id, { onDelete: "cascade" }),
+	url: pg.text("url").notNull(),
 	title: pg.text("title").notNull(),
 	description: pg.text("description").notNull(),
 	engDescription: pg.text("eng_description").notNull(),

@@ -83,6 +83,7 @@ function RouteComponent() {
 
 	const form = useForm({
 		defaultValues: {
+			url: "",
 			title: "",
 			description: "",
 			engDescription: "",
@@ -101,6 +102,7 @@ function RouteComponent() {
 		},
 		validators: {
 			onSubmit: z.object({
+				url: z.url("Неккоректная ссылка"),
 				title: z
 					.string()
 					.min(3, "Минимальный заголвоок должен состоять из 3-х символов"),
@@ -160,6 +162,35 @@ function RouteComponent() {
 								}}
 								className="flex flex-col gap-3"
 							>
+								<Field name="url">
+									{(f) => (
+										<div key={f.name} className="flex flex-col gap-3">
+											<p className="text-white">
+												{f.state.meta.errors[0] ? (
+													<p>
+														{f.state.meta.errors.map((e, index) => (
+															<p
+																key={index.toString() + "EL"}
+																className="text-red-500 text-[12px]"
+															>
+																{e?.message}
+															</p>
+														))}
+													</p>
+												) : (
+													"Ссылка на проект"
+												)}
+											</p>
+											<Input
+												className="text-white"
+												value={f.state.value}
+												onChange={(e) => f.handleChange(e.target.value)}
+												onBlur={f.handleBlur}
+												placeholder="Введите ссылку"
+											/>
+										</div>
+									)}
+								</Field>
 								<Field name="title">
 									{(f) => (
 										<div key={f.name} className="flex flex-col gap-3">
@@ -369,6 +400,7 @@ type Project = {
 	serial: number;
 	deletedAt: Date | null;
 	description: string;
+	url: string;
 	preview: string & {
 		id: string;
 		createdAt: Date;
@@ -420,6 +452,7 @@ function EditProject({ project }: { project: Project }) {
 
 	const form = useForm({
 		defaultValues: {
+			url: project.url,
 			title: project.title,
 			description: project.description,
 			engDescription: project.engDescription,
@@ -439,6 +472,7 @@ function EditProject({ project }: { project: Project }) {
 		},
 		validators: {
 			onSubmit: z.object({
+				url: z.url("Неккоректная ссылка"),
 				title: z
 					.string()
 					.min(3, "Минимальный заголвоок должен состоять из 3-х символов"),
@@ -474,6 +508,35 @@ function EditProject({ project }: { project: Project }) {
 			}}
 			className="flex flex-col gap-3"
 		>
+			<Field name="url">
+				{(f) => (
+					<div key={f.name} className="flex flex-col gap-3">
+						<p className="text-white">
+							{f.state.meta.errors[0] ? (
+								<p>
+									{f.state.meta.errors.map((e, index) => (
+										<p
+											key={index.toString() + "EL"}
+											className="text-red-500 text-[12px]"
+										>
+											{e?.message}
+										</p>
+									))}
+								</p>
+							) : (
+								"Ссылка на проект"
+							)}
+						</p>
+						<Input
+							className="text-white"
+							value={f.state.value}
+							onChange={(e) => f.handleChange(e.target.value)}
+							onBlur={f.handleBlur}
+							placeholder="Введите ссылку"
+						/>
+					</div>
+				)}
+			</Field>
 			<Field name="title">
 				{(f) => (
 					<div key={f.name} className="flex flex-col gap-3">
