@@ -19,7 +19,6 @@
 		"elysia": "^1.2.25",
 		"mime-types": "^3.0.1",
 		"pg": "^8.14.1",
-		"sharp": "^0.34.2",
 		"zod": "^3.25.16",
 		"@lunarweb/shared": "workspace:*",
 		"@lunarweb/env": "workspace:*",

@@ -4,7 +4,6 @@ import { env } from "@lunarweb/env";
 import { redis } from "@lunarweb/redis";
 import { eq } from "drizzle-orm";
 import mime from "mime-types";
-import sharp from "sharp";
 
 export const s3 = new Bun.S3Client({
 	region: env.S3_REGION,
@@ -24,10 +23,6 @@ export async function UploadFile({
 }) {
 	const arrayBuffer = await file.arrayBuffer();
 	let buf: Buffer<ArrayBufferLike> = Buffer.from(arrayBuffer);
-
-	if (isImage) {
-		buf = await sharp(buf).webp().toBuffer();
-	}
 
 	const mimeType = mime.lookup(file.name);
 	const resolvedMimeType = mimeType ? mimeType : "application/octet-stream";
