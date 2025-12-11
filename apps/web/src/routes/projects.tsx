@@ -52,84 +52,85 @@ function RouteComponent() {
 
 			<div className="md:grid flex flex-col md:gap-12 gap-4 md:grid-cols-3">
 				{initialData?.map((p, index) => (
-					<BlurFade
-						inView={true}
-						direction="up"
-						duration={0.6}
-						delay={(index % 3) * 0.1}
-						key={p.id}
-						style={{
-							gridRowStart:
-								Math.floor(index / 3) * 2 + (index % 3 === 2 ? 2 : 1),
-							gridRowEnd:
-								index % 3 === 0
-									? Math.floor(index / 3) * 2 + 3
-									: Math.floor(index / 3) * 2 + 2,
-						}}
-						className={cn(
-							"flex flex-col gap-2",
-							Math.floor(index / 3) % 2 === 0
-								? index % 3 === 0
-									? "md:col-span-2"
-									: "md:col-start-3"
-								: index % 3 === 0
-									? "md:col-span-2 md:col-start-2"
-									: "md:col-start-1",
-						)}
-					>
-						<div className="relative">
-							{p.preview?.id && (
-								<Image
-									src={p.preview.id}
-									alt={p.title || ""}
-									className="aspect-video rounded-[8px] overflow-hidden w-full"
-								/>
+					<a href={p.url} key={p.id}>
+						<BlurFade
+							inView={true}
+							direction="up"
+							duration={0.6}
+							delay={(index % 3) * 0.1}
+							style={{
+								gridRowStart:
+									Math.floor(index / 3) * 2 + (index % 3 === 2 ? 2 : 1),
+								gridRowEnd:
+									index % 3 === 0
+										? Math.floor(index / 3) * 2 + 3
+										: Math.floor(index / 3) * 2 + 2,
+							}}
+							className={cn(
+								"flex flex-col gap-2",
+								Math.floor(index / 3) % 2 === 0
+									? index % 3 === 0
+										? "md:col-span-2"
+										: "md:col-start-3"
+									: index % 3 === 0
+										? "md:col-span-2 md:col-start-2"
+										: "md:col-start-1",
 							)}
-
-							{p.characteristics && p.characteristics.length > 0 && (
-								<div className="flex flex-wrap gap-2 absolute right-4 top-4 rounded-[8px]">
-									{lang === "ru"
-										? p.characteristics.map((c) => (
-												<div
-													key={c}
-													className="text-white text-[12px] px-1.5 py-1 bg-[#1C1C1C]/80 rounded-[8px] text-center backdrop-blur-sm"
-												>
-													<p>{c}</p>
-												</div>
-											))
-										: p.engCharacteristics?.map((c) => (
-												<div
-													key={c}
-													className="text-white text-[12px] px-1.5 py-1 bg-[#1C1C1C]/80 rounded-[8px] text-center backdrop-blur-sm"
-												>
-													<p>{c}</p>
-												</div>
-											))}
-								</div>
-							)}
-						</div>
-
-						<div className="flex flex-col gap-2">
-							<TextAnimate
-								animation="blurIn"
-								duration={0.6}
-								className="text-white font-medium"
-							>
-								{p.title}
-							</TextAnimate>
-
-							<TextAnimate
-								animation="blurIn"
-								duration={0.6}
-								className={cn(
-									"text-white/50 text-sm",
-									index % 3 === 0 ? "max-w-105" : "",
+						>
+							<div className="relative">
+								{p.preview?.id && (
+									<Image
+										src={p.preview.id}
+										alt={p.title || ""}
+										className="aspect-video rounded-[8px] overflow-hidden w-full"
+									/>
 								)}
-							>
-								{lang === "ru" ? p.description : p.engDescription}
-							</TextAnimate>
-						</div>
-					</BlurFade>
+
+								{p.characteristics && p.characteristics.length > 0 && (
+									<div className="flex flex-wrap gap-2 absolute right-4 top-4 rounded-[8px]">
+										{lang === "ru"
+											? p.characteristics.map((c) => (
+													<div
+														key={c}
+														className="text-white text-[12px] px-1.5 py-1 bg-[#1C1C1C]/80 rounded-[8px] text-center backdrop-blur-sm"
+													>
+														<p>{c}</p>
+													</div>
+												))
+											: p.engCharacteristics?.map((c) => (
+													<div
+														key={c}
+														className="text-white text-[12px] px-1.5 py-1 bg-[#1C1C1C]/80 rounded-[8px] text-center backdrop-blur-sm"
+													>
+														<p>{c}</p>
+													</div>
+												))}
+									</div>
+								)}
+							</div>
+
+							<div className="flex flex-col gap-2">
+								<TextAnimate
+									animation="blurIn"
+									duration={0.6}
+									className="text-white font-medium"
+								>
+									{p.title}
+								</TextAnimate>
+
+								<TextAnimate
+									animation="blurIn"
+									duration={0.6}
+									className={cn(
+										"text-white/50 text-sm",
+										index % 3 === 0 ? "max-w-105" : "",
+									)}
+								>
+									{lang === "ru" ? p.description : p.engDescription}
+								</TextAnimate>
+							</div>
+						</BlurFade>
+					</a>
 				))}
 			</div>
 		</div>
