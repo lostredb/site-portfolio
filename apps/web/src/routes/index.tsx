@@ -125,17 +125,20 @@ function HomeComponent() {
 						</button>
 					</motion.a>
 				</div>
-				<TextAnimate
-					as="p"
-					animation="fadeIn"
-					delay={0.2}
-					duration={0.4}
+				<motion.p
+					initial={{ y: 100, opacity: 0 }}
+					animate={{ y: 0, opacity: 1 }}
+					transition={{
+						duration: 0.3,
+						delay: 0.2,
+						stiffness: 100,
+					}}
 					className="whitespace-pre-line text-white leading-5"
 				>
 					{lang === "ru"
 						? initialData?.about || ""
 						: initialData?.engAbout || ""}
-				</TextAnimate>
+				</motion.p>
 				<div className="flex flex-wrap gap-3">
 					{initialData?.socials.map((s, index) => (
 						<motion.a

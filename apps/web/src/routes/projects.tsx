@@ -1,7 +1,6 @@
 import { Navigation } from "@/components/navigation";
 import { BlurFade } from "@/components/ui/blur-fade";
 import Image from "@/components/ui/image";
-import { TextAnimate } from "@/components/ui/text-animate";
 import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
@@ -115,24 +114,32 @@ function RouteComponent() {
 							</div>
 
 							<div className="flex flex-col gap-2">
-								<TextAnimate
-									animation="blurIn"
-									duration={0.6}
+								<motion.p
+									initial={{ y: 100, opacity: 0 }}
+									animate={{ y: 0, opacity: 1 }}
+									transition={{
+										duration: 0.6,
+										stiffness: 100,
+									}}
 									className="text-white font-medium"
 								>
 									{p.title}
-								</TextAnimate>
+								</motion.p>
 
-								<TextAnimate
-									animation="blurIn"
-									duration={0.6}
+								<motion.p
+									initial={{ y: 100, opacity: 0 }}
+									animate={{ y: 0, opacity: 1 }}
+									transition={{
+										duration: 0.6,
+										stiffness: 100,
+									}}
 									className={cn(
 										"text-white/50 text-sm",
 										index % 3 === 0 ? "max-w-105" : "",
 									)}
 								>
 									{lang === "ru" ? p.description : p.engDescription}
-								</TextAnimate>
+								</motion.p>
 							</div>
 						</BlurFade>
 					</a>
