@@ -88,14 +88,23 @@ function RouteComponent() {
 
 							{p.characteristics && p.characteristics.length > 0 && (
 								<div className="flex flex-wrap gap-2 absolute right-4 top-4 rounded-[8px]">
-									{p.characteristics.map((c) => (
-										<div
-											key={c}
-											className="text-white text-[12px] px-1.5 py-1 bg-[#1C1C1C]/80 rounded-[8px] text-center backdrop-blur-sm"
-										>
-											<p>{c}</p>
-										</div>
-									))}
+									{lang === "ru"
+										? p.characteristics.map((c) => (
+												<div
+													key={c}
+													className="text-white text-[12px] px-1.5 py-1 bg-[#1C1C1C]/80 rounded-[8px] text-center backdrop-blur-sm"
+												>
+													<p>{c}</p>
+												</div>
+											))
+										: p.engCharacteristics?.map((c) => (
+												<div
+													key={c}
+													className="text-white text-[12px] px-1.5 py-1 bg-[#1C1C1C]/80 rounded-[8px] text-center backdrop-blur-sm"
+												>
+													<p>{c}</p>
+												</div>
+											))}
 								</div>
 							)}
 						</div>

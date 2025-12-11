@@ -96,7 +96,7 @@ function RouteComponent() {
 				preview: previewId[0],
 				imageIds: fileIds,
 				characteristics: characteristics,
-				engCharacteristics: characteristics,
+				engCharacteristics: engCharacteristics,
 			});
 		},
 		validators: {
