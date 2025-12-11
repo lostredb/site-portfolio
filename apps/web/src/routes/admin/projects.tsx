@@ -104,9 +104,6 @@ function RouteComponent() {
 				title: z
 					.string()
 					.min(3, "Минимальный заголвоок должен состоять из 3-х символов"),
-				engTitle: z
-					.string()
-					.min(3, "Минимальный заголвоок должен состоять из 3-х символов"),
 				description: z
 					.string()
 					.min(
@@ -443,9 +440,6 @@ function EditProject({ project }: { project: Project }) {
 		validators: {
 			onSubmit: z.object({
 				title: z
-					.string()
-					.min(3, "Минимальный заголвоок должен состоять из 3-х символов"),
-				engTitle: z
 					.string()
 					.min(3, "Минимальный заголвоок должен состоять из 3-х символов"),
 				description: z
