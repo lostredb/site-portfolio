@@ -129,7 +129,6 @@ function HomeComponent() {
 					as="p"
 					animation="fadeIn"
 					delay={0.2}
-					by="word"
 					duration={0.4}
 					className="whitespace-pre-line text-white leading-5"
 				>
