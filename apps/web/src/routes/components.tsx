@@ -84,7 +84,7 @@ function RouteComponent() {
 										className="w-full rounded-2xl overflow-hidden"
 									/>
 								</DialogTrigger>
-								<DialogContent className="text-white bg-[#1c1c1c] outline-0 border-0">
+								<DialogContent className="text-white bg-[#1c1c1c] outline-0 border-0 rounded-2xl p-4">
 									<DialogHeader>
 										<DialogTitle>
 											{lang === "ru"
@@ -95,7 +95,7 @@ function RouteComponent() {
 									<Image
 										src={c.image}
 										alt=""
-										className="w-full rounded-3xl overflow-hidden border border-[#333333]"
+										className="w-full rounded-[12px] aspect-square overflow-hidden border border-[#333333]"
 									/>
 									<div className="flex flex-col gap-2">
 										<div className="flex flex-col gap-1">

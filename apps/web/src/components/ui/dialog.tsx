@@ -92,7 +92,7 @@ function DialogHeader({
 		<div
 			data-slot="dialog-header"
 			className={cn(
-				"flex flex-row justify-between font-medium gap-2 text-center sm:text-left",
+				"flex flex-row justify-between items-center font-medium gap-2 text-center sm:text-left",
 				className,
 			)}
 			{...props}
@@ -101,9 +101,9 @@ function DialogHeader({
 			{showCloseButton && (
 				<DialogPrimitive.Close
 					data-slot="dialog-close"
-					className="size-6 rounded-full bg-secondary text-muted-foreground hover:opacity-80 transition flex items-center justify-center"
+					className="rounded-full text-muted-foreground hover:opacity-80 transition flex items-center justify-center"
 				>
-					<XIcon className="size-4" />
+					<XIcon className="size-[18px]" />
 					<span className="sr-only">Close</span>
 				</DialogPrimitive.Close>
 			)}
