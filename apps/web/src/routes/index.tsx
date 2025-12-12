@@ -40,7 +40,6 @@ function HomeComponent() {
 
 	return (
 		<div className="relative overflow-hidden min-h-screen px-4 md:px-0 w-full flex flex-col justify-between items-center bg-black/50">
-			{/* Фоновый слой */}
 			<div
 				className="absolute inset-0 
 				before:content-[''] before:absolute before:inset-0

@@ -51,7 +51,7 @@ function RouteComponent() {
 						duration={0.6}
 						direction="up"
 						delay={0.3}
-						className="flex flex-col text-white p-4 justify-between bg-[#1C1C1C] z-20 aspect-square rounded-2xl leading-[130%]"
+						className="flex flex-col text-white p-4 justify-between bg-[#1C1C1C] z-20 aspect-square rounded-2xl "
 					>
 						<div className="flex justify-between">
 							<p className="text-[36px]">{lang === "ru" ? "Старт" : "Start"}</p>
@@ -71,7 +71,7 @@ I define the goals, deadlines, and costs to set a clear direction for the work.`
 						duration={0.6}
 						direction="up"
 						delay={0.6}
-						className="flex flex-col text-white p-4 justify-between bg-[#1C1C1C] z-20 aspect-square rounded-2xl leading-[130%] md:mt-32"
+						className="flex flex-col text-white p-4 justify-between bg-[#1C1C1C] z-20 aspect-square rounded-2xl md:mt-32"
 					>
 						<div className="flex justify-between">
 							<p className="text-[36px]">
@@ -96,7 +96,7 @@ a prototype based on the data obtained.`}
 						duration={0.6}
 						direction="up"
 						delay={0.9}
-						className="flex flex-col text-white p-4 justify-between bg-[#1C1C1C] z-20 aspect-square rounded-2xl leading-[130%] md:mt-64"
+						className="flex flex-col text-white p-4 justify-between bg-[#1C1C1C] z-20 aspect-square rounded-2xl md:mt-64"
 					>
 						<div className="flex justify-between">
 							<p className="text-[36px]">
@@ -121,7 +121,7 @@ to create a cohesive and expressive product.`}
 						duration={0.6}
 						direction="up"
 						delay={1.2}
-						className="flex flex-col text-white p-4 justify-between bg-[#1C1C1C] z-20 aspect-square rounded-2xl leading-[130%] md:mt-16"
+						className="flex flex-col text-white p-4 justify-between bg-[#1C1C1C] z-20 aspect-square rounded-2xl md:mt-16"
 					>
 						<div className="flex justify-between">
 							<p className="text-[36px]">
@@ -175,7 +175,7 @@ is ready for launch.`}
 							)}
 						>
 							<div className="flex flex-col gap-2">
-								<p className="text-[32px]">
+								<p className="text-[32px] leading-[1.3]">
 									{lang === "ru" ? s.title : s.engTitle}
 								</p>
 								<p className="whitespace-pre-line w-[85%]">
@@ -200,7 +200,7 @@ is ready for launch.`}
 						className="flex flex-col justify-between gap-16 p-4 rounded-2xl bg-[#1C1C1C] z-20 text-white"
 					>
 						<div className="flex flex-col gap-2">
-							<p className="text-[32px]">
+							<p className="text-[32px] leading-[1.3]">
 								{lang === "ru" ? "Индивидуальный запрос" : "Individual request"}
 							</p>
 							<p>
