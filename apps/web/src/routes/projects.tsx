@@ -79,9 +79,9 @@ function RouteComponent() {
 							direction="up"
 							duration={0.6}
 							delay={(index % 3) * 0.1}
-							className="w-full h-full"
+							className="w-full h-full flex flex-col gap-2"
 						>
-							<div className="relative flex flex-col gap-2">
+							<div className="relative">
 								{p.preview?.id && (
 									<Image
 										src={p.preview.id}
