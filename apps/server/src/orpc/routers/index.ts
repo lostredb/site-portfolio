@@ -5,6 +5,7 @@ import { socialRouter } from "./social";
 import { projectRouter } from "./project";
 import { serviceRouter } from "./services";
 import { componentRouter } from "./component";
+import { charactRouter } from "./charact";
 
 export const appRouter = {
 	user: userRouter,
@@ -13,6 +14,7 @@ export const appRouter = {
 	project: projectRouter,
 	service: serviceRouter,
 	components: componentRouter,
+	charact: charactRouter,
 };
 
 export type AppRouter = typeof appRouter;

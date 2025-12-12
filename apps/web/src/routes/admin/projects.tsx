@@ -29,15 +29,6 @@ export const Route = createFileRoute("/admin/projects")({
 	},
 });
 
-const characteristicsArray = [
-	{ title: "Темная тема", eng: "Dark theme" },
-	{ title: "Светлая тема", eng: "Light theme" },
-	{ title: "Одностраничный сайт", eng: "Single-page website" },
-	{ title: "Многостраничный сайт", eng: "Multi-page website" },
-	{ title: "Платформа", eng: "Platform" },
-	{ title: "Портфолио", eng: "Portfolio" },
-];
-
 function RouteComponent() {
 	const { orpc } = Route.useRouteContext();
 	const [fileIds, setFileIds] = useState<string[]>([]);
@@ -47,6 +38,7 @@ function RouteComponent() {
 	const [engCharacteristics, setEngCharacteristics] = useState<string[]>([]);
 
 	const { data: initialData } = useQuery(orpc.project.get.queryOptions());
+	const { data: characts } = useQuery(orpc.charact.get.queryOptions());
 
 	useEffect(() => {
 		if (previewId.length > 1) {
@@ -75,6 +67,17 @@ function RouteComponent() {
 				await queryClient.invalidateQueries({
 					queryKey: orpc.project.get.queryKey(),
 				});
+			},
+		}),
+	);
+
+	const deleteCharactMutation = useMutation(
+		orpc.charact.delete.mutationOptions({
+			onSuccess: async () => {
+				await queryClient.invalidateQueries({
+					queryKey: orpc.charact.get.queryKey(),
+				});
+				toast.success("Характеристика удалена");
 			},
 		}),
 	);
@@ -122,11 +125,11 @@ function RouteComponent() {
 		},
 	});
 
-	const addOrRemoveCharact = (char: { title: string; eng: string }) => {
+	const addOrRemoveCharact = (char: { rus: string; eng: string }) => {
 		setCharacteristics((prev) =>
-			prev.includes(char.title)
-				? prev.filter((c) => c !== char.title)
-				: [...prev, char.title],
+			prev.includes(char.rus)
+				? prev.filter((c) => c !== char.rus)
+				: [...prev, char.rus],
 		);
 		setEngCharacteristics((prev) =>
 			prev.includes(char.eng)
@@ -303,11 +306,11 @@ function RouteComponent() {
 								<div className="flex flex-col gap-3">
 									<p className="text-white">Характеристики</p>
 									<div className="grid grid-cols-2 gap-3">
-										{characteristicsArray.map((c) => (
+										{characts?.map((c) => (
 											<CheckBoxLabel
-												key={c.title}
-												checked={characteristics.includes(c.title)}
-												title={c.title}
+												key={c.rus}
+												checked={characteristics.includes(c.rus)}
+												title={c.rus}
 												onClick={() => addOrRemoveCharact(c)}
 											/>
 										))}
@@ -323,6 +326,29 @@ function RouteComponent() {
 							</form>
 						</DialogContent>
 					</Dialog>
+				</div>
+				<div className="flex flex-col gap-3">
+					<CreateCharact />
+					<div className="flex flex-col gap-2">
+						{characts?.map((c) => (
+							<div
+								key={c.id}
+								className="p-3 flex justify-between bg-[#1c1c1c] text-white rounded-lg border border-white/10 items-center"
+							>
+								<div className="flex flex-col gap-1">
+									<p>Руссикй: {c.rus}</p>
+									<p>Английский: {c.eng}</p>
+								</div>
+								<button
+									type="button"
+									className="rounded-sm p-3 group cursor-pointer transition-colors duration-150 ease-in-out bg-white/10 hover:bg-red-700"
+									onClick={() => deleteCharactMutation.mutate({ key: c.id })}
+								>
+									<Trash2Icon className="size-5 text-red-700 group-hover:text-white transition-colors duration-150 ease-in-out" />
+								</button>
+							</div>
+						))}
+					</div>
 				</div>
 				<table>
 					<thead>
@@ -430,6 +456,11 @@ function EditProject({ project }: { project: Project }) {
 	const [characteristics, setCharacteristics] = useState<string[]>(
 		project?.characteristics ? [...project.characteristics] : [],
 	);
+	const [engCharacteristics, setEngCharacteristics] = useState<string[]>(
+		project?.engCharacteristics ? project.engCharacteristics : [],
+	);
+
+	const { data: characts } = useQuery(orpc.charact.get.queryOptions());
 
 	const editProjectMutation = useMutation(
 		orpc.project.edit.mutationOptions({
@@ -466,7 +497,7 @@ function EditProject({ project }: { project: Project }) {
 				preview: previewId[0],
 				imageIds: fileIds,
 				characteristics: characteristics,
-				engCharacteristics: characteristics,
+				engCharacteristics: engCharacteristics,
 				id: project.id,
 			});
 		},
@@ -494,9 +525,16 @@ function EditProject({ project }: { project: Project }) {
 
 	const Field = form.Field;
 
-	const addOrRemoveCharact = (char: string) => {
+	const addOrRemoveCharact = (char: { rus: string; eng: string }) => {
 		setCharacteristics((prev) =>
-			prev.includes(char) ? prev.filter((c) => c !== char) : [...prev, char],
+			prev.includes(char.rus)
+				? prev.filter((c) => c !== char.rus)
+				: [...prev, char.rus],
+		);
+		setEngCharacteristics((prev) =>
+			prev.includes(char.eng)
+				? prev.filter((c) => c !== char.eng)
+				: [...prev, char.eng],
 		);
 	};
 
@@ -649,12 +687,12 @@ function EditProject({ project }: { project: Project }) {
 			<div className="flex flex-col gap-3">
 				<p className="text-white">Характеристики</p>
 				<div className="grid grid-cols-2 gap-3">
-					{characteristicsArray.map((c) => (
+					{characts?.map((c) => (
 						<CheckBoxLabel
-							key={c.title}
-							checked={characteristics.includes(c.title)}
-							title={c.title}
-							onClick={() => addOrRemoveCharact(c.title)}
+							key={c.rus}
+							checked={characteristics.includes(c.rus)}
+							title={c.rus}
+							onClick={() => addOrRemoveCharact(c)}
 						/>
 					))}
 				</div>
@@ -667,5 +705,77 @@ function EditProject({ project }: { project: Project }) {
 				Изменить
 			</Button>
 		</form>
+	);
+}
+
+function CreateCharact() {
+	const { orpc } = Route.useRouteContext();
+
+	const createCharactMutation = useMutation(
+		orpc.charact.add.mutationOptions({
+			onSuccess: async () => {
+				await queryClient.invalidateQueries({
+					queryKey: orpc.charact.get.queryKey(),
+				});
+				form.reset();
+				toast.success("Характеристика успешно создана");
+			},
+		}),
+	);
+
+	const form = useForm({
+		defaultValues: {
+			rus: "",
+			eng: "",
+		},
+		onSubmit: async ({ value }) => {
+			await createCharactMutation.mutateAsync(value);
+		},
+	});
+
+	const Field = form.Field;
+	return (
+		<div className="flex w-full">
+			<form
+				onSubmit={(e) => {
+					e.preventDefault();
+					form.handleSubmit();
+				}}
+				className="flex justify-between w-full items-center"
+			>
+				<div className="flex gap-3">
+					<Field name="rus">
+						{(f) => (
+							<Input
+								key={f.name}
+								className="text-white"
+								value={f.state.value}
+								onChange={(e) => f.handleChange(e.target.value)}
+								onBlur={f.handleBlur}
+								placeholder="Характеристика (Русский)"
+							/>
+						)}
+					</Field>
+					<Field name="eng">
+						{(f) => (
+							<Input
+								key={f.name}
+								className="text-white"
+								value={f.state.value}
+								onChange={(e) => f.handleChange(e.target.value)}
+								onBlur={f.handleBlur}
+								placeholder="Характеристика (Английский)"
+							/>
+						)}
+					</Field>
+				</div>
+				<Button
+					type="submit"
+					className="to-white from-white text-black hover:text-white hover:bg-white/50 cursor-pointer h-full"
+				>
+					Добавить
+				</Button>
+			</form>
+		</div>
 	);
 }

@@ -56,3 +56,12 @@ export const projectImagesToProjectAndFilesRelation = relations(
 		}),
 	}),
 );
+
+export const characteristics = pg.pgTable("characteristics", {
+	id: pg
+		.varchar("id", { length: 255 })
+		.notNull()
+		.$defaultFn(() => Bun.randomUUIDv7()),
+	rus: pg.text("rus").notNull(),
+	eng: pg.text("eng").notNull(),
+});

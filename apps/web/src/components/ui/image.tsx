@@ -12,13 +12,8 @@ export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 }
 
 export default function Image({ src, imageClassName, ...props }: ImageProps) {
-	const [isLoading, setIsLoading] = useState(true);
+	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [error, setError] = useState(false);
-
-	useEffect(() => {
-		setIsLoading(true);
-		setIsLoading(false);
-	}, [src]);
 
 	return (
 		<>
@@ -36,11 +31,16 @@ export default function Image({ src, imageClassName, ...props }: ImageProps) {
 					<img
 						{...props}
 						src={`${import.meta.env.VITE_SERVER_URL}/file/${src}`}
-						className={cn("size-full object-cover", imageClassName)}
+						className={cn(
+							"size-full object-cover",
+							imageClassName,
+							isLoading ? "invisible" : "visible",
+						)}
 						crossOrigin="use-credentials"
 						onLoad={() => {
 							setIsLoading(false);
 						}}
+						onLoadStart={() => setIsLoading(true)}
 						onError={(e) => {
 							console.error(e.type);
 							setError(true);
