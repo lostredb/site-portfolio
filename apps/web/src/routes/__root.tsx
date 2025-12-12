@@ -76,7 +76,7 @@ function RootDocument() {
 			<head>
 				<HeadContent />
 			</head>
-			<body>
+			<body className="bg-[#111111]">
 				<div className="grid h-fit min-h-screen w-fit min-w-screen grid-rows-[auto_1fr] bg-[#111111]">
 					<div
 						className={cn(
@@ -86,7 +86,7 @@ function RootDocument() {
 								: "opacity-0 pointer-events-none",
 						)}
 					>
-						<div className="text-white p-6 rounded-xl flex flex-col gap-4 items-center justify-center">
+						<div className="text-white p-6 rounded-xl bg-[#111111] flex flex-col gap-4 items-center justify-center">
 							<Loader className="h-9" />
 						</div>
 					</div>

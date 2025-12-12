@@ -45,7 +45,9 @@ function RouteComponent() {
 					{lang === "ru" ? "Проекты" : "Projects"}
 				</h1>
 				<div className="size-6 flex absolute top-0 -right-8 justify-center items-center rounded-full text-white ring ring-white opacity-30">
-					<p className="select-none">{initialData?.length || 0}</p>
+					<p className="select-none text-center leading-0">
+						{initialData?.length || 0}
+					</p>
 				</div>
 			</div>
 
