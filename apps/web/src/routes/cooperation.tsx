@@ -171,7 +171,7 @@ is ready for launch.`}
 										: index - 1,
 							}}
 							className={cn(
-								"flex flex-col justify-between gap-16 p-4 rounded-2xl bg-[#1C1C1C] z-20 text-white",
+								"flex flex-col justify-between gap-16 p-4 aspect-square rounded-2xl bg-[#1C1C1C] z-20 text-white",
 							)}
 						>
 							<div className="flex flex-col gap-2">
@@ -197,7 +197,7 @@ is ready for launch.`}
 						direction="up"
 						duration={0.6}
 						delay={initialData?.length ? (initialData.length + 1) * 0.3 : 0.3}
-						className="flex flex-col justify-between gap-16 p-4 rounded-2xl bg-[#1C1C1C] z-20 text-white"
+						className="flex flex-col justify-between gap-16 p-4 aspect-square rounded-2xl bg-[#1C1C1C] z-20 text-white"
 					>
 						<div className="flex flex-col gap-2">
 							<p className="text-[32px] leading-[1.3]">
