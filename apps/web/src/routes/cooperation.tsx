@@ -35,7 +35,7 @@ function RouteComponent() {
 	});
 
 	return (
-		<div className="w-full container pt-4 md:py-12 flex flex-col gap-16 h-fit min-h-screen mb-26 md:mb-0">
+		<div className="w-full container pt-4 md:py-12 flex flex-col gap-20 h-fit min-h-screen mb-26 md:mb-0">
 			<Navigation active="coop" />
 			<div className="w-full flex gap-1">
 				<h1 className="text-white leading-10 text-[48px]">
@@ -51,7 +51,7 @@ function RouteComponent() {
 						duration={0.6}
 						direction="up"
 						delay={0.3}
-						className="flex flex-col text-white p-4 justify-between bg-[#1C1C1C] z-20 h-[318px] rounded-2xl"
+						className="flex flex-col text-white p-4 justify-between bg-[#1C1C1C] z-20 h-[318px] aspect-square rounded-2xl leading-[130%]"
 					>
 						<div className="flex justify-between">
 							<p className="text-[36px]">{lang === "ru" ? "Старт" : "Start"}</p>
@@ -71,7 +71,7 @@ I define the goals, deadlines, and costs to set a clear direction for the work.`
 						duration={0.6}
 						direction="up"
 						delay={0.6}
-						className="flex flex-col text-white p-4 justify-between bg-[#1C1C1C] z-20 h-[318px] rounded-2xl md:mt-32"
+						className="flex flex-col text-white p-4 justify-between bg-[#1C1C1C] z-20 h-[318px] aspect-square rounded-2xl leading-[130%] md:mt-32"
 					>
 						<div className="flex justify-between">
 							<p className="text-[36px]">
@@ -96,7 +96,7 @@ a prototype based on the data obtained.`}
 						duration={0.6}
 						direction="up"
 						delay={0.9}
-						className="flex flex-col text-white p-4 justify-between bg-[#1C1C1C] z-20 h-[318px] rounded-2xl md:mt-64"
+						className="flex flex-col text-white p-4 justify-between bg-[#1C1C1C] z-20 h-[318px] aspect-square rounded-2xl leading-[130%] md:mt-64"
 					>
 						<div className="flex justify-between">
 							<p className="text-[36px]">
@@ -121,7 +121,7 @@ to create a cohesive and expressive product.`}
 						duration={0.6}
 						direction="up"
 						delay={1.2}
-						className="flex flex-col text-white p-4 justify-between bg-[#1C1C1C] z-20 h-[318px] rounded-2xl md:mt-16"
+						className="flex flex-col text-white p-4 justify-between bg-[#1C1C1C] z-20 h-[318px] aspect-square rounded-2xl leading-[130%] md:mt-16"
 					>
 						<div className="flex justify-between">
 							<p className="text-[36px]">

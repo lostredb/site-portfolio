@@ -38,7 +38,7 @@ function HomeComponent() {
 	});
 
 	return (
-		<div className="relative min-h-screen overflow-x-hidden px-4 md:px-0 w-full flex flex-col justify-between items-center bg-black/50">
+		<div className="relative overflow-hidden min-h-screen px-4 md:px-0 w-full flex flex-col justify-between items-center bg-black/50">
 			{/* Фоновый слой */}
 			<div
 				className="absolute inset-0 
@@ -133,7 +133,7 @@ function HomeComponent() {
 						delay: 0.2,
 						stiffness: 100,
 					}}
-					className="whitespace-pre-line text-white leading-5"
+					className="whitespace-pre-line text-white leading-[130%]"
 				>
 					{lang === "ru"
 						? initialData?.about || ""

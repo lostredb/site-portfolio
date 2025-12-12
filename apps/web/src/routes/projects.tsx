@@ -79,7 +79,7 @@ function RouteComponent() {
 							direction="up"
 							duration={0.6}
 							delay={(index % 3) * 0.1}
-							className="w-full h-full"
+							className="w-full h-full gap-2"
 						>
 							<div className="relative">
 								{p.preview?.id && (
@@ -113,7 +113,7 @@ function RouteComponent() {
 								)}
 							</div>
 
-							<div className="flex flex-col gap-2">
+							<div className="flex flex-col gap-1">
 								<motion.p
 									initial={{ y: 100, opacity: 0 }}
 									animate={{ y: 0, opacity: 1 }}
