@@ -64,9 +64,9 @@ function RouteComponent() {
 				</h1>
 				<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mt-12 md:mt-24 xl:mt-44">
 					<BlurFade
-						duration={0.6}
+						duration={0.4}
 						direction="up"
-						delay={0.3}
+						delay={0.2}
 						className="flex flex-col text-white p-4 justify-between bg-[#1C1C1C] z-20 aspect-square rounded-2xl "
 					>
 						<div className="flex justify-between">
@@ -84,9 +84,9 @@ I define the goals, deadlines, and costs to set a clear direction for the work.`
 						</p>
 					</BlurFade>
 					<BlurFade
-						duration={0.6}
+						duration={0.4}
 						direction="up"
-						delay={0.6}
+						delay={0.4}
 						className="flex flex-col text-white p-4 justify-between bg-[#1C1C1C] z-20 aspect-square rounded-2xl xl:mt-32"
 					>
 						<div className="flex justify-between">
@@ -109,9 +109,9 @@ a prototype based on the data obtained.`}
 					</BlurFade>
 
 					<BlurFade
-						duration={0.6}
+						duration={0.4}
 						direction="up"
-						delay={0.9}
+						delay={0.6}
 						className="flex flex-col text-white p-4 justify-between bg-[#1C1C1C] z-20 aspect-square rounded-2xl xl:mt-64"
 					>
 						<div className="flex justify-between">
@@ -134,9 +134,9 @@ to create a cohesive and expressive product.`}
 					</BlurFade>
 
 					<BlurFade
-						duration={0.6}
+						duration={0.4}
 						direction="up"
-						delay={1.2}
+						delay={0.8}
 						className="flex flex-col text-white p-4 justify-between bg-[#1C1C1C] z-20 aspect-square rounded-2xl xl:mt-16"
 					>
 						<div className="flex justify-between">
@@ -164,7 +164,7 @@ is ready for launch.`}
 			<BlurFade
 				inView={true}
 				direction="up"
-				duration={0.6}
+				duration={0.4}
 				className="relative w-full"
 			>
 				<h1 className="text-white/10 text-[40px] sm:text-[8vh] 2xl:text-[min(25vh,170px)] absolute top-7 md:top-0 leading-none -mt-6 translate-x-1/2 right-1/2 text-nowrap select-none">
@@ -173,11 +173,10 @@ is ready for launch.`}
 				<div className="md:grid flex flex-col gap-4 md:grid-cols-2 xl:grid-cols-4 md:gap-6 mb-4 mt-10 md:mb-18 md:mt-18 xl:mt-32">
 					{initialData?.map((s, index) => (
 						<BlurFade
-							inView={true}
 							key={s.id}
 							direction="up"
-							duration={0.6}
-							delay={(index + 1) * 0.3}
+							duration={0.4}
+							delay={(index + 1) * 0.2}
 							style={{
 								gridColumn: isXl
 									? Math.floor(index / 4) % 2 === 0
@@ -210,10 +209,9 @@ is ready for launch.`}
 						</BlurFade>
 					))}
 					<BlurFade
-						inView={true}
 						direction="up"
-						duration={0.6}
-						delay={initialData?.length ? (initialData.length + 1) * 0.3 : 0.3}
+						duration={0.4}
+						delay={initialData?.length ? (initialData.length + 1) * 0.2 : 0.2}
 						className="flex flex-col justify-between gap-16 p-4 aspect-square rounded-2xl bg-[#1C1C1C] z-20 text-white"
 					>
 						<div className="flex flex-col gap-2">

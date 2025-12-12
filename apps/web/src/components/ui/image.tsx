@@ -1,6 +1,6 @@
 /** biome-ignore-all lint/a11y/useAltText: <explanation> */
 import { ImageOff } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import Loader from "../loader";
 
@@ -15,6 +15,11 @@ export default function Image({ src, imageClassName, ...props }: ImageProps) {
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState(false);
 
+	useEffect(() => {
+		setIsLoading(true);
+		setIsLoading(false);
+	}, [src]);
+
 	return (
 		<>
 			{error ? (
@@ -24,7 +29,7 @@ export default function Image({ src, imageClassName, ...props }: ImageProps) {
 			) : (
 				<div className={cn(className, props.className, "relative")}>
 					{isLoading && (
-						<div className="absolute inset-0 flex items-center justify-center bg-[#111111] rounded-2xl">
+						<div className="absolute inset-0 flex items-center justify-center bg-[url('/imageload.svg')] bg-no-repeat bg-center bg-cover border border-[#333333] rounded-2xl">
 							<Loader />
 						</div>
 					)}
