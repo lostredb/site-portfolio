@@ -24,7 +24,7 @@ export default function Image({ src, imageClassName, ...props }: ImageProps) {
 			) : (
 				<div className={cn(className, props.className, "relative")}>
 					{isLoading && (
-						<div className="absolute inset-0 flex items-center justify-center bg-secondary">
+						<div className="absolute inset-0 flex items-center justify-center bg-[#111111] rounded-2xl">
 							<Loader />
 						</div>
 					)}
