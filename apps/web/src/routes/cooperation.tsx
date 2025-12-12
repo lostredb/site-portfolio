@@ -46,7 +46,7 @@ function RouteComponent() {
 				<h1 className="text-white/10 text-[58px] md:text-[min(30vh,232px)] absolute top-7 md:top-0 leading-none -mt-6 translate-x-1/2 right-1/2 text-nowrap select-none">
 					{lang === "ru" ? "Этапы работы" : "Stages of work"}
 				</h1>
-				<div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-12 md:mt-44">
+				<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mt-12 md:mt-44">
 					<BlurFade
 						duration={0.6}
 						direction="up"
@@ -71,7 +71,7 @@ I define the goals, deadlines, and costs to set a clear direction for the work.`
 						duration={0.6}
 						direction="up"
 						delay={0.6}
-						className="flex flex-col text-white p-4 justify-between bg-[#1C1C1C] z-20 aspect-square rounded-2xl md:mt-32"
+						className="flex flex-col text-white p-4 justify-between bg-[#1C1C1C] z-20 aspect-square rounded-2xl xl:mt-32"
 					>
 						<div className="flex justify-between">
 							<p className="text-[36px]">
@@ -96,7 +96,7 @@ a prototype based on the data obtained.`}
 						duration={0.6}
 						direction="up"
 						delay={0.9}
-						className="flex flex-col text-white p-4 justify-between bg-[#1C1C1C] z-20 aspect-square rounded-2xl md:mt-64"
+						className="flex flex-col text-white p-4 justify-between bg-[#1C1C1C] z-20 aspect-square rounded-2xl xl:mt-64"
 					>
 						<div className="flex justify-between">
 							<p className="text-[36px]">
@@ -121,7 +121,7 @@ to create a cohesive and expressive product.`}
 						duration={0.6}
 						direction="up"
 						delay={1.2}
-						className="flex flex-col text-white p-4 justify-between bg-[#1C1C1C] z-20 aspect-square rounded-2xl md:mt-16"
+						className="flex flex-col text-white p-4 justify-between bg-[#1C1C1C] z-20 aspect-square rounded-2xl xl:mt-16"
 					>
 						<div className="flex justify-between">
 							<p className="text-[36px]">
