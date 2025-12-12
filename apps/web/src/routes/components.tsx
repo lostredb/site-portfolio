@@ -1,5 +1,12 @@
 import { Navigation } from "@/components/navigation";
 import { BlurFade } from "@/components/ui/blur-fade";
+import {
+	Dialog,
+	DialogContent,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from "@/components/ui/dialog";
 import Image from "@/components/ui/image";
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
@@ -69,7 +76,45 @@ function RouteComponent() {
 							direction="up"
 							delay={index * 0.3}
 						>
-							<Image src={c.image} alt="" className="w-full" />
+							<Dialog>
+								<DialogTrigger>
+									<Image
+										src={c.image}
+										alt=""
+										className="w-full rounded-2xl overflow-hidden"
+									/>
+								</DialogTrigger>
+								<DialogContent className="text-white bg-[#1c1c1c] outline-0 border-0">
+									<DialogHeader>
+										<DialogTitle>
+											{lang === "ru"
+												? "Просмотр компонента"
+												: "Watching component"}
+										</DialogTitle>
+									</DialogHeader>
+									<Image
+										src={c.image}
+										alt=""
+										className="w-full rounded-3xl overflow-hidden border border-[#333333]"
+									/>
+									<div className="flex flex-col gap-2">
+										<div className="flex flex-col gap-1">
+											<p className="text-sm text-white/50 leading-[1]">
+												{lang === "ru" ? "Название:" : "Title:"}
+											</p>
+											<p className="leading-[1]">
+												{lang === "ru" ? c.name : c.engName}
+											</p>
+										</div>
+										<div className="flex flex-col gap-1">
+											<p className="text-sm text-white/50 leading-[1]">
+												{lang === "ru" ? "Год:" : "Year:"}
+											</p>
+											<p className="leading-[1]">{c.year}</p>
+										</div>
+									</div>
+								</DialogContent>
+							</Dialog>
 						</BlurFade>
 					);
 				})}

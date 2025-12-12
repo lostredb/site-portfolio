@@ -9,13 +9,16 @@ import {
 } from "@/components/ui/dialog";
 import Image from "@/components/ui/image";
 import { FileInput } from "@/components/ui/image-input";
+import { Input } from "@/components/ui/input";
 import { queryClient } from "@/utils/orpc";
+import { useForm } from "@tanstack/react-form";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { createFileRoute } from "@tanstack/react-router";
 import { Trash2Icon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { z } from "zod/v4";
 
 export const Route = createFileRoute("/admin/components")({
 	component: RouteComponent,
@@ -36,6 +39,7 @@ function RouteComponent() {
 					queryKey: orpc.components.get.queryKey(),
 				});
 				setFileId([]);
+				form.reset();
 				toast.success("Компонент успешно добавлен");
 			},
 		}),
@@ -59,6 +63,35 @@ function RouteComponent() {
 		}
 	}, [fileId]);
 
+	const form = useForm({
+		defaultValues: {
+			name: "",
+			engName: "",
+			year: "",
+		},
+		onSubmit: ({ value }) => {
+			createComponentsMutation.mutate({
+				...value,
+				image: fileId[0],
+			});
+		},
+		validators: {
+			onSubmit: z.object({
+				name: z
+					.string()
+					.min(3, "Минимальное возможное имя должно содержать 3 символа"),
+				engName: z
+					.string()
+					.min(3, "Минимальное возможное имя должно содержать 3 символа"),
+				year: z
+					.string()
+					.min(4, "Минимально 4 символа, это же не дизайн египетских пирамид"),
+			}),
+		},
+	});
+
+	const Field = form.Field;
+
 	return (
 		<div className="flex">
 			<SideBar active="components" />
@@ -75,21 +108,113 @@ function RouteComponent() {
 							<DialogHeader>
 								<DialogTitle>Добавление услуги</DialogTitle>
 							</DialogHeader>
-							<FileInput
-								fileIds={fileId}
-								setFileIds={setFileId}
-								setIsLoading={setIsLoading}
-							/>
-							<Button
-								disabled={isPending && isLoading}
-								type="button"
-								onClick={() =>
-									createComponentsMutation.mutate({ image: fileId[0] })
-								}
-								className="to-white from-white text-black hover:text-white hover:bg-white/50 cursor-pointer"
+							<form
+								onSubmit={(e) => {
+									e.preventDefault();
+									form.handleSubmit();
+								}}
+								className="flex flex-col gap-3"
 							>
-								{isPending ? "Добавляем..." : "Добавить"}
-							</Button>
+								<FileInput
+									fileIds={fileId}
+									setFileIds={setFileId}
+									setIsLoading={setIsLoading}
+								/>
+								<Field name="name">
+									{(f) => (
+										<div className="flex flex-col gap-2">
+											<p className="text-white">
+												{f.state.meta.errors[0] ? (
+													<p>
+														{f.state.meta.errors.map((e, index) => (
+															<p
+																key={index.toString() + "EL"}
+																className="text-red-500 text-[12px]"
+															>
+																{e?.message}
+															</p>
+														))}
+													</p>
+												) : (
+													"Имя"
+												)}
+											</p>
+											<Input
+												className="text-white"
+												value={f.state.value}
+												onChange={(e) => f.handleChange(e.target.value)}
+												onBlur={f.handleBlur}
+												placeholder="Введите имя компонента"
+											/>
+										</div>
+									)}
+								</Field>
+								<Field name="engName">
+									{(f) => (
+										<div className="flex flex-col gap-2">
+											<p className="text-white">
+												{f.state.meta.errors[0] ? (
+													<p>
+														{f.state.meta.errors.map((e, index) => (
+															<p
+																key={index.toString() + "EL"}
+																className="text-red-500 text-[12px]"
+															>
+																{e?.message}
+															</p>
+														))}
+													</p>
+												) : (
+													"Имя (Английский)"
+												)}
+											</p>
+											<Input
+												className="text-white"
+												value={f.state.value}
+												onChange={(e) => f.handleChange(e.target.value)}
+												onBlur={f.handleBlur}
+												placeholder="Введите имя компонента"
+											/>
+										</div>
+									)}
+								</Field>
+								<Field name="year">
+									{(f) => (
+										<div className="flex flex-col gap-2">
+											<p className="text-white">
+												{f.state.meta.errors[0] ? (
+													<p>
+														{f.state.meta.errors.map((e, index) => (
+															<p
+																key={index.toString() + "EL"}
+																className="text-red-500 text-[12px]"
+															>
+																{e?.message}
+															</p>
+														))}
+													</p>
+												) : (
+													"Год"
+												)}
+											</p>
+											<Input
+												className="text-white"
+												value={f.state.value}
+												onChange={(e) => f.handleChange(e.target.value)}
+												onBlur={f.handleBlur}
+												placeholder="Введите год создания"
+											/>
+										</div>
+									)}
+								</Field>
+								<Button
+									disabled={isPending && isLoading}
+									type="submit"
+									className="to-white from-white w-full text-black hover:text-white hover:bg-white/50 cursor-pointer"
+								>
+									{isPending ? "Добавляем..." : "Добавить"}
+								</Button>
+							</form>
 						</DialogContent>
 					</Dialog>
 				</div>

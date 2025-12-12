@@ -1,0 +1,1 @@
+ALTER TABLE "components" ADD COLUMN "eng_name" text NOT NULL;

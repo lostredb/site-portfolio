@@ -36,6 +36,20 @@
       "when": 1765557180421,
       "tag": "0004_elite_maddog",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1765565734863,
+      "tag": "0005_dazzling_hobgoblin",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1765566777034,
+      "tag": "0006_yummy_alex_power",
+      "breakpoints": true
     }
   ]
 }

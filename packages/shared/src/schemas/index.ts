@@ -40,3 +40,10 @@ export const serviceSchema = z.object({
 	deadline: z.string(),
 	engDeadline: z.string(),
 });
+
+export const componentSchema = z.object({
+	image: z.string(),
+	name: z.string(),
+	engName: z.string(),
+	year: z.string(),
+});

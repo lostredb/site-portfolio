@@ -2,7 +2,7 @@ import { InvalidateCached, ServeCached } from "@lunarweb/redis";
 import { protectedProcedure, publicProcedure } from "../orpc";
 import { db } from "@lunarweb/database";
 import { eq } from "drizzle-orm/gel-core/expressions";
-import { paramsSchema } from "@lunarweb/shared/schemas";
+import { componentSchema, paramsSchema } from "@lunarweb/shared/schemas";
 import { components } from "@lunarweb/database/schema";
 import { z } from "zod/v4";
 
@@ -13,7 +13,7 @@ export const componentRouter = {
 		});
 	}),
 	create: protectedProcedure
-		.input(z.object({ image: z.string() }))
+		.input(componentSchema)
 		.handler(async ({ input }) => {
 			await InvalidateCached(["components"]);
 			await db.insert(components).values(input);
