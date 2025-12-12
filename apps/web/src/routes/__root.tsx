@@ -72,7 +72,7 @@ function RootDocument() {
 	}, [isFetching]);
 
 	return (
-		<html lang="en" className="dark">
+		<html lang="en" className="dark bg-[#111111] h-screen w-screen">
 			<head>
 				<HeadContent />
 			</head>
