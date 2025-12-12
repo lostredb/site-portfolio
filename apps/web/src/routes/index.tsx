@@ -142,7 +142,7 @@ function HomeComponent() {
 						<a
 							href={initialData?.devoloperLink}
 							className={cn(
-								initialData?.devoloperLink ? "text-[№FF3F0E]" : "text-white",
+								initialData?.devoloperLink ? "text-[#FF3F0E]" : "text-white",
 							)}
 						>
 							разработчиком
