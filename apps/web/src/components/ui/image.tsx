@@ -19,26 +19,21 @@ export default function Image({
 }: ImageProps) {
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const [error, setError] = useState<boolean>(false);
-	// Ссылка на DOM-элемент img для проверки кэша
 	const imgRef = useRef<HTMLImageElement>(null);
 
-	// Ключевой эффект: сброс состояния при изменении src
 	useEffect(() => {
 		setIsLoading(true);
 		setError(false);
 
-		// Проверка, не загружено ли изображение уже (например, из кэша)
 		if (imgRef.current?.complete) {
 			setIsLoading(false);
 		}
-	}, [src]); // Зависимость от src
+	}, [src]);
 
-	// Основной обработчик успешной загрузки
 	const handleLoad = () => {
 		setIsLoading(false);
 	};
 
-	// Основной обработчик ошибки
 	const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
 		console.error("Image failed to load:", e.type, src);
 		setError(true);
@@ -49,7 +44,7 @@ export default function Image({
 		<div className={cn("relative", className)}>
 			{isLoading && !error && (
 				<div className="absolute inset-0 flex items-center justify-center bg-[url('/imageload.svg')] bg-no-repeat bg-center bg-cover border border-[#333333] rounded-2xl">
-					<Loader className="animate-spin" />
+					<Loader className="animate-spin text-white/80" />
 				</div>
 			)}
 
