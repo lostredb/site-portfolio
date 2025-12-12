@@ -80,13 +80,13 @@ function RootDocument() {
 				<div className="grid h-fit min-h-screen w-fit min-w-screen grid-rows-[auto_1fr] bg-[#111111]">
 					<div
 						className={cn(
-							"fixed text-center h-screen w-screen size-full z-50 backdrop-blur bg-black/10 items-center justify-center flex flex-col gap-4 transition duration-300 ease-in-out",
+							"fixed text-center h-screen w-screen size-full z-50 backdrop-blur bg-[#111111] items-center justify-center flex flex-col gap-4 transition duration-300 ease-in-out",
 							showLoading
 								? "opacity-100 pointer-events-auto"
 								: "opacity-0 pointer-events-none",
 						)}
 					>
-						<div className="text-foreground p-6 rounded-xl flex flex-col gap-4 items-center justify-center">
+						<div className="text-white p-6 rounded-xl flex flex-col gap-4 items-center justify-center">
 							<Loader className="h-9" />
 						</div>
 					</div>
