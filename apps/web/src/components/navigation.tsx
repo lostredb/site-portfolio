@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { motion } from "motion/react";
 
 const navButns = [
 	{
@@ -106,7 +107,17 @@ export function Navigation({ active }: { active: string }) {
 							)}
 						>
 							<b.icon className="size-4.5" />
-							{b.id === active ? <p>{lang === "ru" ? b.label : b.eng}</p> : ""}
+							{b.id === active ? (
+								<motion.p
+									initial={{ x: -20, opacity: 0 }}
+									animate={{ x: 0, opacity: 1 }}
+									transition={{ duration: 0.4, stiffness: 100 }}
+								>
+									{lang === "ru" ? b.label : b.eng}
+								</motion.p>
+							) : (
+								""
+							)}
 						</Link>
 					</div>
 				))}
