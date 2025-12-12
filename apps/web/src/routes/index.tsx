@@ -102,7 +102,7 @@ function HomeComponent() {
 								by="word"
 								className="text-[#FAFAFA80]"
 							>
-								{lang === "ru" ? "UI/UX Дизайнер" : "UI/UX Designer"}
+								{lang === "ru" ? "UX/UI Дизайнер" : "UX/UI Designer"}
 							</TextAnimate>
 						</motion.div>
 					</div>
@@ -172,7 +172,7 @@ function HomeComponent() {
 						<a
 							href={initialData?.devoloperLink}
 							className={cn(
-								initialData?.devoloperLink ? "text-[№FF3F0E]" : "text-white",
+								initialData?.devoloperLink ? "text-[#FF3F0E]" : "text-white",
 							)}
 						>
 							developer
