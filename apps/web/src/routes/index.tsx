@@ -119,8 +119,8 @@ function HomeComponent() {
 							type="button"
 							className="
 						bg-[url('/button-bg.svg')] bg-center bg-contain bg-no-repeat select-none
-						pb-5 pt-3 px-4 active:scale-95 transition-all duration-100 ease-in-out cursor-pointer
-						text-[12px] text-white w-fit"
+						pb-5 pt-3 px-4 hover:scale-95 transition-all duration-100 ease-in-out cursor-pointer
+						text-[12px] text-white w-[134px] h-[48px]"
 						>
 							{lang === "ru" ? "Обсудить проект" : "Contact me"}
 						</button>
@@ -138,7 +138,8 @@ function HomeComponent() {
 						className="whitespace-pre-line text-white leading-[130%]"
 					>
 						Уже больше трёх лет создаю сайты и интерфейсы — от простых лендингов
-						до сложных веб-проектов. Работаю как в Tilda, так и с{" "}
+						до сложных веб-проектов. <br />
+						Работаю как в Tilda, так и с{" "}
 						<a
 							href={initialData?.devoloperLink}
 							className={cn(
@@ -147,10 +148,13 @@ function HomeComponent() {
 						>
 							разработчиком
 						</a>
-						, когда нужно собрать что-то индивидуальное и масштабное. Люблю,
-						когда дизайн не просто красивый, а решает задачи бизнеса и помогает
-						пользователю чувствовать себя на своём месте. Загляни в моё
-						портфолио — возможно, именно твой проект станет следующим.
+						, когда нужно собрать что-то индивидуальное и масштабное. <br />
+						<br />
+						Люблю, когда дизайн не просто красивый, а решает задачи бизнеса и
+						помогает пользователю чувствовать себя на своём месте. <br />
+						<br />
+						Загляни в моё портфолио — возможно, именно твой проект станет
+						следующим.
 					</motion.p>
 				) : (
 					<motion.p
@@ -164,8 +168,8 @@ function HomeComponent() {
 						className="whitespace-pre-line text-white leading-[130%]"
 					>
 						For over three years, I’ve been designing websites and interfaces —
-						from simple landing pages to complex web projects. I work in Tilda
-						and also collaborate with a{" "}
+						from simple landing pages to complex web projects. <br />I work in
+						Tilda and also collaborate with a
 						<a
 							href={initialData?.devoloperLink}
 							className={cn(
@@ -174,10 +178,11 @@ function HomeComponent() {
 						>
 							developer
 						</a>{" "}
-						when a project needs something more custom and scalable. I believe
-						design should do more than look good — it should solve business
-						problems and help users feel right at home. Take a look at my
-						portfolio — your project might be the next one.
+						when a project needs something more custom and scalable. <br />
+						<br />I believe design should do more than look good — it should
+						solve business problems and help users feel right at home. <br />
+						<br />
+						Take a look at my portfolio — your project might be the next one.
 					</motion.p>
 				)}
 
