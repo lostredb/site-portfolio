@@ -3,6 +3,7 @@ import { BlurFade } from "@/components/ui/blur-fade";
 import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/cooperation")({
@@ -16,6 +17,7 @@ export const Route = createFileRoute("/cooperation")({
 
 function RouteComponent() {
 	const { services: initialData } = Route.useLoaderData();
+	const [isXl, setIsXl] = useState<boolean>(false);
 
 	const { data: lang } = useQuery({
 		queryKey: ["language"],
@@ -34,6 +36,20 @@ function RouteComponent() {
 		},
 	});
 
+	useEffect(() => {
+		const checkScreenSize = () => {
+			setIsXl(window.innerWidth >= 1280);
+		};
+		console.log(isXl);
+
+		checkScreenSize();
+		window.addEventListener("resize", checkScreenSize);
+
+		return () => {
+			window.removeEventListener("resize", checkScreenSize);
+		};
+	}, [isXl]);
+
 	return (
 		<div className="w-full container pt-4 md:py-12 flex flex-col gap-20 h-fit min-h-screen mb-26 md:mb-0">
 			<Navigation active="coop" />
@@ -43,10 +59,10 @@ function RouteComponent() {
 				</h1>
 			</div>
 			<BlurFade direction="up" duration={0.6} className="relative w-full">
-				<h1 className="text-white/10 text-[58px] md:text-[min(30vh,232px)] absolute top-7 md:top-0 leading-none -mt-6 translate-x-1/2 right-1/2 text-nowrap select-none">
+				<h1 className="text-white/10 text-[58px] md:text-[10vh] xl:text-[min(30vh,232px)] absolute top-7 md:top-0 leading-none -mt-6 translate-x-1/2 right-1/2 text-nowrap select-none">
 					{lang === "ru" ? "Этапы работы" : "Stages of work"}
 				</h1>
-				<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mt-12 md:mt-44">
+				<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mt-12 md:mt-24 xl:mt-44">
 					<BlurFade
 						duration={0.6}
 						direction="up"
@@ -151,10 +167,10 @@ is ready for launch.`}
 				duration={0.6}
 				className="relative w-full"
 			>
-				<h1 className="text-white/10 text-[40px] sm:text-[20vh] 2xl:text-[min(25vh,170px)] absolute top-7 md:top-0 leading-none -mt-6 translate-x-1/2 right-1/2 text-nowrap select-none">
+				<h1 className="text-white/10 text-[40px] sm:text-[8vh] 2xl:text-[min(25vh,170px)] absolute top-7 md:top-0 leading-none -mt-6 translate-x-1/2 right-1/2 text-nowrap select-none">
 					{lang === "ru" ? "Услуги и стоимость" : "Services and prices"}
 				</h1>
-				<div className="md:grid flex flex-col gap-4 md:grid-cols-4 md:gap-6 mb-4 mt-10 md:mb-18 md:mt-32">
+				<div className="md:grid flex flex-col gap-4 md:grid-cols-2 xl:grid-cols-4 md:gap-6 mb-4 mt-10 md:mb-18 md:mt-18 xl:mt-32">
 					{initialData?.map((s, index) => (
 						<BlurFade
 							inView={true}
@@ -163,12 +179,13 @@ is ready for launch.`}
 							duration={0.6}
 							delay={(index + 1) * 0.3}
 							style={{
-								gridColumn:
-									Math.floor(index / 4) % 2 === 0
+								gridColumn: isXl
+									? Math.floor(index / 4) % 2 === 0
 										? index % 4 === 3
 											? 2
 											: index + 1
-										: index - 1,
+										: index - 1
+									: (index % 2) + 1,
 							}}
 							className={cn(
 								"flex flex-col justify-between gap-16 p-4 aspect-square rounded-2xl bg-[#1C1C1C] z-20 text-white",
