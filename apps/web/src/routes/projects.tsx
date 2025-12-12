@@ -45,7 +45,7 @@ function RouteComponent() {
 					{lang === "ru" ? "Проекты" : "Projects"}
 				</h1>
 				<div className="size-6 flex absolute top-0 -right-8 justify-center items-center rounded-full text-white ring ring-white opacity-30">
-					<p className="text-xs select-none">{initialData?.length || 0}</p>
+					<p className="select-none">{initialData?.length || 0}</p>
 				</div>
 			</div>
 
@@ -64,7 +64,7 @@ function RouteComponent() {
 									: Math.floor(index / 3) * 2 + 2,
 						}}
 						className={cn(
-							"flex flex-col gap-2",
+							"flex flex-col gap-2 group",
 							Math.floor(index / 3) % 2 === 0
 								? index % 3 === 0
 									? "md:col-span-2"
@@ -81,12 +81,12 @@ function RouteComponent() {
 							delay={(index % 3) * 0.1}
 							className="w-full h-full flex flex-col gap-2"
 						>
-							<div className="relative">
+							<div className="relative overflow-hidden">
 								{p.preview?.id && (
 									<Image
 										src={p.preview.id}
 										alt={p.title || ""}
-										className="aspect-video rounded-[8px] overflow-hidden w-full"
+										className="aspect-video rounded-[8px] overflow-hidden group-hover:scale-110 w-full transition-all duration-300 ease-in-out"
 									/>
 								)}
 
