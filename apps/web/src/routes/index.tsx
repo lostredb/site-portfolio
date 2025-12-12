@@ -2,6 +2,7 @@ import { Navigation } from "@/components/navigation";
 import { BlurFade } from "@/components/ui/blur-fade";
 import Image from "@/components/ui/image";
 import { TextAnimate } from "@/components/ui/text-animate";
+import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { createFileRoute } from "@tanstack/react-router";
@@ -125,20 +126,61 @@ function HomeComponent() {
 						</button>
 					</motion.a>
 				</div>
-				<motion.p
-					initial={{ y: 100, opacity: 0 }}
-					animate={{ y: 0, opacity: 1 }}
-					transition={{
-						duration: 0.3,
-						delay: 0.2,
-						stiffness: 100,
-					}}
-					className="whitespace-pre-line text-white leading-[130%]"
-				>
-					{lang === "ru"
-						? initialData?.about || ""
-						: initialData?.engAbout || ""}
-				</motion.p>
+				{lang === "ru" ? (
+					<motion.p
+						initial={{ y: 100, opacity: 0 }}
+						animate={{ y: 0, opacity: 1 }}
+						transition={{
+							duration: 0.3,
+							delay: 0.2,
+							stiffness: 100,
+						}}
+						className="whitespace-pre-line text-white leading-[130%]"
+					>
+						Уже больше трёх лет создаю сайты и интерфейсы — от простых лендингов
+						до сложных веб-проектов. Работаю как в Tilda, так и с{" "}
+						<a
+							href={initialData?.devoloperLink}
+							className={cn(
+								initialData?.devoloperLink ? "text-[№FF3F0E]" : "text-white",
+							)}
+						>
+							разработчиком
+						</a>
+						, когда нужно собрать что-то индивидуальное и масштабное. Люблю,
+						когда дизайн не просто красивый, а решает задачи бизнеса и помогает
+						пользователю чувствовать себя на своём месте. Загляни в моё
+						портфолио — возможно, именно твой проект станет следующим.
+					</motion.p>
+				) : (
+					<motion.p
+						initial={{ y: 100, opacity: 0 }}
+						animate={{ y: 0, opacity: 1 }}
+						transition={{
+							duration: 0.3,
+							delay: 0.2,
+							stiffness: 100,
+						}}
+						className="whitespace-pre-line text-white leading-[130%]"
+					>
+						For over three years, I’ve been designing websites and interfaces —
+						from simple landing pages to complex web projects. I work in Tilda
+						and also collaborate with a{" "}
+						<a
+							href={initialData?.devoloperLink}
+							className={cn(
+								initialData?.devoloperLink ? "text-[№FF3F0E]" : "text-white",
+							)}
+						>
+							developer
+						</a>{" "}
+						when a project needs something more custom and scalable. I believe
+						design should do more than look good — it should solve business
+						problems and help users feel right at home. Take a look at my
+						portfolio — your project might be the next one.
+					</motion.p>
+				)}
+
 				<div className="flex flex-wrap gap-3">
 					{initialData?.socials.map((s, index) => (
 						<motion.a

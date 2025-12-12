@@ -6,9 +6,8 @@ export const someSchema = z.object({
 
 export const infoSchema = z.object({
 	avatarImage: z.string(),
-	about: z.string(),
-	engAbout: z.string(),
 	link: z.url(),
+	devoloperLink: z.url(),
 });
 
 export const socialSchema = z.object({

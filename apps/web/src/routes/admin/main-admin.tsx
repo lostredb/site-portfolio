@@ -72,9 +72,8 @@ function RouteComponent() {
 
 	const form = useForm({
 		defaultValues: {
-			about: info?.about || "",
-			engAbout: info?.engAbout || "",
 			link: info?.link || "",
+			devoloperLink: info?.devoloperLink || "",
 		},
 		onSubmit: async ({ value }) => {
 			let fileId: string;
@@ -91,13 +90,8 @@ function RouteComponent() {
 		},
 		validators: {
 			onSubmit: z.object({
-				about: z
-					.string()
-					.min(1, "Резюме должно состоять минимум из 1-го символа"),
-				engAbout: z
-					.string()
-					.min(1, "Резюме должно состоять минимум из 1-го символа"),
 				link: z.url("Неккоректная ссылка"),
+				devoloperLink: z.url("Неккоректная ссылка"),
 			}),
 		},
 	});
@@ -158,7 +152,7 @@ function RouteComponent() {
 							</div>
 						)}
 					</Field>
-					<Field name="about">
+					<Field name="devoloperLink">
 						{(f) => (
 							<div key={f.name} className="flex flex-col gap-3">
 								<p className="text-white">
@@ -174,46 +168,15 @@ function RouteComponent() {
 											))}
 										</p>
 									) : (
-										"Резюме"
+										"Ссылка для связи с разработчиком"
 									)}
 								</p>
 								<Input
 									className="text-white"
-									size="textarea"
 									value={f.state.value}
 									onChange={(e) => f.handleChange(e.target.value)}
 									onBlur={f.handleBlur}
-									placeholder="Введите содержимое резюме"
-								/>
-							</div>
-						)}
-					</Field>
-					<Field name="engAbout">
-						{(f) => (
-							<div key={f.name} className="flex flex-col gap-3">
-								<p className="text-white">
-									{f.state.meta.errors[0] ? (
-										<p>
-											{f.state.meta.errors.map((e, index) => (
-												<p
-													key={index.toString() + "EL"}
-													className="text-red-500 text-[12px]"
-												>
-													{e?.message}
-												</p>
-											))}
-										</p>
-									) : (
-										"Резюме (Английсикй)"
-									)}
-								</p>
-								<Input
-									className="text-white"
-									size="textarea"
-									value={f.state.value}
-									onChange={(e) => f.handleChange(e.target.value)}
-									onBlur={f.handleBlur}
-									placeholder="Введите содержимое резюме"
+									placeholder="Введите ссылку"
 								/>
 							</div>
 						)}
