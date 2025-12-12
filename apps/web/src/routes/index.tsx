@@ -168,7 +168,7 @@ function HomeComponent() {
 					>
 						For over three years, I’ve been designing websites and interfaces —
 						from simple landing pages to complex web projects. <br />I work in
-						Tilda and also collaborate with a
+						Tilda and also collaborate with a{" "}
 						<a
 							href={initialData?.devoloperLink}
 							className={cn(
