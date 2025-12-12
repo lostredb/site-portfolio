@@ -51,7 +51,7 @@ function RouteComponent() {
 				</div>
 			</div>
 
-			<div className="md:grid flex flex-col md:gap-12 gap-6 md:grid-cols-3">
+			<div className="md:grid flex flex-col gap-12 md:grid-cols-3">
 				{initialData?.map((p, index) => (
 					<a
 						href={p.url}
