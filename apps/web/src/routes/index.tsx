@@ -94,7 +94,7 @@ function HomeComponent() {
 								by="word"
 								className="text-white"
 							>
-								{lang === "ru" ? "Максим Анисимов" : "Max Anisimov"}
+								{lang === "ru" ? "Максим Анисимов" : "Maxim Anisimov"}
 							</TextAnimate>
 							<TextAnimate
 								as="p"
