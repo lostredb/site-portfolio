@@ -7,7 +7,6 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "motion/react";
-import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/")({
@@ -21,7 +20,6 @@ export const Route = createFileRoute("/")({
 
 function HomeComponent() {
 	const { info: initialData } = Route.useLoaderData();
-	const [isSm, setIsSm] = useState<boolean>();
 
 	const { data: lang } = useQuery({
 		queryKey: ["language"],

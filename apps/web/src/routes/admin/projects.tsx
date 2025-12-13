@@ -448,19 +448,26 @@ type Project = {
 
 function EditProject({ project }: { project: Project }) {
 	const { orpc } = Route.useRouteContext();
+	const { data: characts } = useQuery(orpc.charact.get.queryOptions());
 	const [fileIds, setFileIds] = useState<string[]>(
 		project.images.map((i) => i.imageId),
 	);
 	const [previewId, setPreviewId] = useState<string[]>([project.preview.id]);
 	const [loading, setLoading] = useState<boolean>(false);
 	const [characteristics, setCharacteristics] = useState<string[]>(
-		project?.characteristics ? [...project.characteristics] : [],
+		project?.characteristics
+			? project.characteristics.filter((c) =>
+					characts?.some((ch) => ch.rus === c),
+				)
+			: [],
 	);
 	const [engCharacteristics, setEngCharacteristics] = useState<string[]>(
-		project?.engCharacteristics ? project.engCharacteristics : [],
+		project?.engCharacteristics
+			? project.engCharacteristics.filter((ec) =>
+					characts?.some((c) => c.eng === ec),
+				)
+			: [],
 	);
-
-	const { data: characts } = useQuery(orpc.charact.get.queryOptions());
 
 	const editProjectMutation = useMutation(
 		orpc.project.edit.mutationOptions({
