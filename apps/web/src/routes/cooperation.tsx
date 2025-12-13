@@ -171,43 +171,43 @@ is ready for launch.`}
 					{lang === "ru" ? "Услуги и стоимость" : "Services and prices"}
 				</h1>
 				<div className="md:grid flex flex-col gap-4 md:grid-cols-2 xl:grid-cols-4 md:gap-6 mb-4 mt-10 md:mb-18 md:mt-18 xl:mt-32">
-					{initialData?.map((s, index) => (
-						<BlurFade
-							key={s.id}
-							direction="up"
-							duration={0.4}
-							delay={(index + 1) * 0.2}
-							style={{
-								gridColumn: isXl
-									? Math.floor(index / 4) % 2 === 0
-										? index % 4 === 3
-											? 2
-											: index + 1
-										: index - 1
-									: (index % 2) + 1,
-							}}
-							className={cn(
-								"flex flex-col justify-between gap-16 p-4 aspect-square rounded-2xl bg-[#1C1C1C] z-20 text-white",
-							)}
-						>
-							<div className="flex flex-col gap-2">
-								<p className="text-[32px] leading-[1.3]">
-									{lang === "ru" ? s.title : s.engTitle}
-								</p>
-								<p className="whitespace-pre-line w-[85%]">
-									{lang === "ru" ? s.description : s.engDescription}
-								</p>
-							</div>
-							<div className="flex flex-col">
-								<p className="text-[24px]">
-									{lang === "ru" ? s.price : s.engPrice}
-								</p>
-								<p className="text-[#FAFAFA]/40">
-									{lang === "ru" ? s.deadline : s.engDeadline}
-								</p>
-							</div>
-						</BlurFade>
-					))}
+					{initialData?.map((s, index) => {
+						return (
+							<BlurFade
+								key={s.id}
+								direction="up"
+								duration={0.4}
+								delay={(index + 1) * 0.2}
+								style={{
+									gridColumn: isXl
+										? Math.floor(index / 3) % 2 === 0
+											? (index % 3) + 1
+											: (index % 3) + 2
+										: (index % 2) + 1,
+								}}
+								className={cn(
+									"flex flex-col justify-between gap-16 p-4 aspect-square rounded-2xl bg-[#1C1C1C] z-20 text-white",
+								)}
+							>
+								<div className="flex flex-col gap-2">
+									<p className="text-[32px] leading-[1.3]">
+										{lang === "ru" ? s.title : s.engTitle}
+									</p>
+									<p className="whitespace-pre-line w-[85%]">
+										{lang === "ru" ? s.description : s.engDescription}
+									</p>
+								</div>
+								<div className="flex flex-col">
+									<p className="text-[24px]">
+										{lang === "ru" ? s.price : s.engPrice}
+									</p>
+									<p className="text-[#FAFAFA]/40">
+										{lang === "ru" ? s.deadline : s.engDeadline}
+									</p>
+								</div>
+							</BlurFade>
+						);
+					})}
 					<BlurFade
 						direction="up"
 						duration={0.4}
