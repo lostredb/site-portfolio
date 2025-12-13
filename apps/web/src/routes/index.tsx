@@ -21,7 +21,7 @@ export const Route = createFileRoute("/")({
 
 function HomeComponent() {
 	const { info: initialData } = Route.useLoaderData();
-	// const [isSm, setIsSm] = useState<boolean>(sm);
+	const [isSm, setIsSm] = useState<boolean>();
 
 	const { data: lang } = useQuery({
 		queryKey: ["language"],
@@ -40,21 +40,6 @@ function HomeComponent() {
 		},
 	});
 
-	// useEffect(() => {
-	// 	const checkScreenSize = () => {
-	// 		setIsSm(window.innerWidth <= 640);
-	// 	};
-
-	// 	console.log(isSm);
-
-	// 	checkScreenSize();
-	// 	window.addEventListener("resize", checkScreenSize);
-
-	// 	return () => {
-	// 		window.removeEventListener("resize", checkScreenSize);
-	// 	};
-	// }, [isSm]);
-
 	return (
 		<div className="relative overflow-hidden min-h-screen px-4 md:px-0 w-full flex flex-col justify-between items-center bg-black/50">
 			<div
@@ -66,18 +51,20 @@ function HomeComponent() {
 				after:bg-[url('/bg.svg')] after:bg-center after:bg-cover
 				after:opacity-5 after:pointer-events-none"
 			/>
-			<motion.div className="md:absolute hidden md:block w-[200vh] -translate-x-1/2 translate-y-1/2 left-1/10 h-[100vh] opacity-30 rounded-[100%] bottom-1/2 mix-blend-soft-light bg-[radial-gradient(88.6vh_47.2vh_at_center,#FAFAFA_0%,transparent_100%)]" />
-			<motion.div className="md:absolute hidden md:block w-[400vh] translate-x-1/2 -translate-y-1/2 -top-1 right-70 h-[190vh] opacity-30 rounded-[100%] bottom-1/2 mix-blend-soft-light bg-[radial-gradient(88.6vh_47.2vh_at_center,#FAFAFA_0%,transparent_100%)]" />
+			<motion.div
+				initial={{ y: 100, opacity: 0 }}
+				animate={{ y: 0, opacity: 1 }}
+				transition={{ duration: 0.6, stiffness: 100 }}
+				className="md:absolute hidden md:block w-[200vh] -translate-x-1/2 translate-y-1/2 left-1/10 h-[100vh] opacity-30 rounded-[100%] bottom-1/2 mix-blend-soft-light bg-[radial-gradient(88.6vh_47.2vh_at_center,#FAFAFA_0%,transparent_100%)]"
+			/>
+			<motion.div
+				initial={{ y: -100, opacity: 0 }}
+				animate={{ y: 0, opacity: 1 }}
+				transition={{ duration: 0.6, stiffness: 100 }}
+				className="md:absolute hidden md:block w-[400vh] translate-x-1/2 -translate-y-1/2 -top-1 right-70 h-[190vh] opacity-30 rounded-[100%] bottom-1/2 mix-blend-soft-light bg-[radial-gradient(88.6vh_47.2vh_at_center,#FAFAFA_0%,transparent_100%)]"
+			/>
 			<div />
-			<BlurFade
-				direction="up"
-				duration={0.6}
-				variant={{
-					hidden: { y: 100 },
-					visible: { y: 0 },
-				}}
-				className="flex flex-col gap-5 w-full max-w-[630px] rounded-2xl bg-[#1C1C1C] p-5 z-50"
-			>
+			<div className="flex flex-col gap-5 w-full max-w-[630px] rounded-2xl bg-[#1C1C1C] p-5 z-50">
 				<div className="flex md:flex-row flex-col gap-4 md:gap-0 justify-between">
 					<div className="flex gap-2">
 						<Link to="/admin/main-admin" className="cursor-default">
@@ -89,16 +76,34 @@ function HomeComponent() {
 								className="size-12 rounded-[6px] overflow-hidden"
 							/>
 						</Link>
-						<motion.div className="flex flex-col">
-							<TextAnimate className="text-white">
+						<motion.div
+							initial={{ x: -30, opacity: 0 }}
+							animate={{ x: 0, opacity: 1 }}
+							transition={{ duration: 0.3, delay: 0.1 }}
+							className="flex flex-col"
+						>
+							<TextAnimate
+								as="p"
+								animation="blurIn"
+								by="word"
+								className="text-white"
+							>
 								{lang === "ru" ? "Максим Анисимов" : "Maxim Anisimov"}
 							</TextAnimate>
-							<TextAnimate className="text-[#FAFAFA80]">
+							<TextAnimate
+								as="p"
+								animation="blurIn"
+								by="word"
+								className="text-[#FAFAFA80]"
+							>
 								{lang === "ru" ? "UX/UI Дизайнер" : "UX/UI Designer"}
 							</TextAnimate>
 						</motion.div>
 					</div>
 					<motion.a
+						initial={{ x: -30, opacity: 0 }}
+						animate={{ x: 0, opacity: 1 }}
+						transition={{ duration: 0.3, delay: 0.2, stiffness: 100 }}
 						target="_blank"
 						href={initialData?.link || "https://t.me/rNEZHu"}
 						className="w-fit"
@@ -115,7 +120,16 @@ function HomeComponent() {
 					</motion.a>
 				</div>
 				{lang === "ru" ? (
-					<motion.p className="whitespace-pre-line text-white leading-[130%]">
+					<motion.p
+						initial={{ y: 100, opacity: 0 }}
+						animate={{ y: 0, opacity: 1 }}
+						transition={{
+							duration: 0.3,
+							delay: 0.2,
+							stiffness: 100,
+						}}
+						className="whitespace-pre-line text-white leading-[130%]"
+					>
 						Уже больше трёх лет создаю сайты и интерфейсы — от простых лендингов
 						до сложных веб-проектов. <br />
 						Работаю как в Tilda, так и с{" "}
@@ -136,7 +150,16 @@ function HomeComponent() {
 						следующим.
 					</motion.p>
 				) : (
-					<motion.p className="whitespace-pre-line text-white leading-[130%]">
+					<motion.p
+						initial={{ y: 20, opacity: 0 }}
+						animate={{ y: 0, opacity: 1 }}
+						transition={{
+							duration: 0.3,
+							delay: 0.2,
+							stiffness: 100,
+						}}
+						className="whitespace-pre-line text-white leading-[130%]"
+					>
 						For over three years, I’ve been designing websites and interfaces —
 						from simple landing pages to complex web projects. <br />I work in
 						Tilda and also collaborate with a{" "}
@@ -158,7 +181,18 @@ function HomeComponent() {
 
 				<div className="flex flex-wrap gap-3">
 					{initialData?.socials.map((s, index) => (
-						<motion.a key={s.id} target="_blank" href={s?.link || ""}>
+						<motion.a
+							initial={{ x: 30, opacity: 0 }}
+							animate={{ x: 0, opacity: 1 }}
+							transition={{
+								duration: 0.3,
+								delay: (index + 2) * 0.1,
+								stiffness: 100,
+							}}
+							key={s.id}
+							target="_blank"
+							href={s?.link || ""}
+						>
 							<Image
 								src={s?.logo || ""}
 								alt=""
@@ -167,7 +201,7 @@ function HomeComponent() {
 						</motion.a>
 					))}
 				</div>
-			</BlurFade>
+			</div>
 			<div />
 			<Navigation active="main" />
 		</div>
