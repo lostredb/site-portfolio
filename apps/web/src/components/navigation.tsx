@@ -94,7 +94,7 @@ export function Navigation({ active }: { active: string }) {
 	};
 
 	return (
-		<div className="flex p-1.5 items-center bg-radial backdrop-blur-lg from-[#1c1c1c]/80 to-[#111111]/80 via-[#1c1c1c]/80 rounded-[12px] fixed bottom-12 border border-white/10 shadow-lg translate-x-1/2 right-1/2 z-50">
+		<div className="flex p-1.5 items-center bg-radial backdrop-blur-lg from-[#1c1c1c]/60 to-[#111111]/50 via-[#1c1c1c]/70 rounded-[12px] fixed bottom-12 border border-white/10 shadow-lg translate-x-1/2 right-1/2 z-50">
 			<div className="flex gap-1.5 items-center pr-1.5 border-r border-white/10">
 				{navButns.map((b) => (
 					<div key={b.id}>
