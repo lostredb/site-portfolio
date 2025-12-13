@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "motion/react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/")({
@@ -19,6 +20,7 @@ export const Route = createFileRoute("/")({
 });
 
 function HomeComponent() {
+	const [isSm, setIsSm] = useState<boolean>(false);
 	const { info: initialData } = Route.useLoaderData();
 
 	const { data: lang } = useQuery({
@@ -40,7 +42,7 @@ function HomeComponent() {
 
 	useEffect(() => {
 		const checkScreenSize = () => {
-			setIsXl(window.innerWidth >= 1280);
+			setIsSm(window.innerWidth >= 1280);
 		};
 
 		checkScreenSize();
@@ -63,13 +65,13 @@ function HomeComponent() {
 				after:opacity-5 after:pointer-events-none"
 			/>
 			<motion.div
-				initial={{ y: 100, opacity: 0 }}
+				initial={{ y: !isSm ? 100 : 0, opacity: !isSm ? 0 : 1 }}
 				animate={{ y: 0, opacity: 1 }}
 				transition={{ duration: 0.6, stiffness: 100 }}
 				className="md:absolute hidden md:block w-[200vh] -translate-x-1/2 translate-y-1/2 left-1/10 h-[100vh] opacity-30 rounded-[100%] bottom-1/2 mix-blend-soft-light bg-[radial-gradient(88.6vh_47.2vh_at_center,#FAFAFA_0%,transparent_100%)]"
 			/>
 			<motion.div
-				initial={{ y: -100, opacity: 0 }}
+				initial={{ y: !isSm ? -100 : 0, opacity: !isSm ? 0 : 1 }}
 				animate={{ y: 0, opacity: 1 }}
 				transition={{ duration: 0.6, stiffness: 100 }}
 				className="md:absolute hidden md:block w-[400vh] translate-x-1/2 -translate-y-1/2 -top-1 right-70 h-[190vh] opacity-30 rounded-[100%] bottom-1/2 mix-blend-soft-light bg-[radial-gradient(88.6vh_47.2vh_at_center,#FAFAFA_0%,transparent_100%)]"
@@ -120,7 +122,7 @@ function HomeComponent() {
 						</motion.div>
 					</div>
 					<motion.a
-						initial={{ x: -30, opacity: 0 }}
+						initial={{ x: !isSm ? -30 : 0, opacity: !isSm ? 0 : 1 }}
 						animate={{ x: 0, opacity: 1 }}
 						transition={{ duration: 0.3, delay: 0.2, stiffness: 100 }}
 						target="_blank"
@@ -140,7 +142,7 @@ function HomeComponent() {
 				</div>
 				{lang === "ru" ? (
 					<motion.p
-						initial={{ y: 100, opacity: 0 }}
+						initial={{ y: !isSm ? 100 : 0, opacity: !isSm ? 0 : 1 }}
 						animate={{ y: 0, opacity: 1 }}
 						transition={{
 							duration: 0.3,
@@ -170,7 +172,7 @@ function HomeComponent() {
 					</motion.p>
 				) : (
 					<motion.p
-						initial={{ y: 100, opacity: 0 }}
+						initial={{ y: !isSm ? 100 : 0, opacity: !isSm ? 0 : 1 }}
 						animate={{ y: 0, opacity: 1 }}
 						transition={{
 							duration: 0.3,
@@ -201,7 +203,7 @@ function HomeComponent() {
 				<div className="flex flex-wrap gap-3">
 					{initialData?.socials.map((s, index) => (
 						<motion.a
-							initial={{ x: 30, opacity: 0 }}
+							initial={{ x: !isSm ? 30 : 0, opacity: !isSm ? 0 : 1 }}
 							animate={{ x: 0, opacity: 1 }}
 							transition={{
 								duration: 0.3,
