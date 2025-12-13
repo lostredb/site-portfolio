@@ -8,7 +8,6 @@ import {
 	FolderOpenIcon,
 	HomeIcon,
 	LanguagesIcon,
-	SunIcon,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
