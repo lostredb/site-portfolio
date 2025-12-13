@@ -22,6 +22,11 @@ import { z } from "zod/v4";
 
 export const Route = createFileRoute("/admin/components")({
 	component: RouteComponent,
+	beforeLoad(ctx) {
+		if (ctx.context.session?.user.role !== "admin") {
+			throw redirect({ to: "/" });
+		}
+	},
 });
 
 function RouteComponent() {
