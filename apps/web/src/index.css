@@ -9,7 +9,7 @@
 
 html,
 body {
-	@apply bg-white;
+	@apply bg-[#111111];
 }
 
 :root {
