@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { queryClient } from "@/utils/orpc";
 import { useForm } from "@tanstack/react-form";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { Link } from "@tanstack/react-router";
+import { Link, redirect } from "@tanstack/react-router";
 import { createFileRoute } from "@tanstack/react-router";
 import { Trash2Icon } from "lucide-react";
 import { useEffect, useState } from "react";
