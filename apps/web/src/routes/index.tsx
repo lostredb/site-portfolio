@@ -159,10 +159,10 @@ function HomeComponent() {
 					</motion.p>
 				) : (
 					<motion.p
-						initial={{ y: 100, opacity: 0 }}
+						initial={{ y: 40, opacity: 0 }}
 						animate={{ y: 0, opacity: 1 }}
 						transition={{
-							duration: 0.3,
+							duration: 0.6,
 							delay: 0.2,
 							stiffness: 100,
 						}}
