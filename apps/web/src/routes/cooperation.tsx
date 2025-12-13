@@ -40,7 +40,6 @@ function RouteComponent() {
 		const checkScreenSize = () => {
 			setIsXl(window.innerWidth >= 1280);
 		};
-		console.log(isXl);
 
 		checkScreenSize();
 		window.addEventListener("resize", checkScreenSize);
@@ -48,7 +47,7 @@ function RouteComponent() {
 		return () => {
 			window.removeEventListener("resize", checkScreenSize);
 		};
-	}, [isXl]);
+	});
 
 	return (
 		<div className="w-full container pt-4 md:py-12 flex flex-col gap-20 h-fit min-h-screen mb-26 md:mb-0">

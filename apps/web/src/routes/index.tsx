@@ -38,6 +38,19 @@ function HomeComponent() {
 		},
 	});
 
+	useEffect(() => {
+		const checkScreenSize = () => {
+			setIsXl(window.innerWidth >= 1280);
+		};
+
+		checkScreenSize();
+		window.addEventListener("resize", checkScreenSize);
+
+		return () => {
+			window.removeEventListener("resize", checkScreenSize);
+		};
+	});
+
 	return (
 		<div className="relative overflow-hidden min-h-screen px-4 md:px-0 w-full flex flex-col justify-between items-center bg-black/50">
 			<div
