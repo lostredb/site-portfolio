@@ -156,7 +156,7 @@ function HomeComponent() {
 						следующим.
 					</p>
 				) : (
-					<p
+					<motion.p
 						// initial={{ y: 40, opacity: 0 }}
 						// animate={{ y: 0, opacity: 1 }}
 						// transition={{
@@ -182,19 +182,19 @@ function HomeComponent() {
 						solve business problems and help users feel right at home. <br />
 						<br />
 						Take a look at my portfolio — your project might be the next one.
-					</p>
+					</motion.p>
 				)}
 
 				<div className="flex flex-wrap gap-3">
 					{initialData?.socials.map((s, index) => (
-						<motion.a
-							initial={{ x: 30, opacity: 0 }}
-							animate={{ x: 0, opacity: 1 }}
-							transition={{
-								duration: 0.3,
-								delay: (index + 2) * 0.1,
-								stiffness: 100,
-							}}
+						<a
+							// initial={{ x: 30, opacity: 0 }}
+							// animate={{ x: 0, opacity: 1 }}
+							// transition={{
+							// 	duration: 0.3,
+							// 	delay: (index + 2) * 0.1,
+							// 	stiffness: 100,
+							// }}
 							key={s.id}
 							target="_blank"
 							href={s?.link || ""}
@@ -204,7 +204,7 @@ function HomeComponent() {
 								alt=""
 								className="size-9 rounded-sm overflow-hidden"
 							/>
-						</motion.a>
+						</a>
 					))}
 				</div>
 			</div>
