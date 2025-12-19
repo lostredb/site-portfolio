@@ -88,22 +88,22 @@ function HomeComponent() {
 							transition={{ duration: 0.3, delay: 0.1 }}
 							className="flex flex-col"
 						>
-							<TextAnimate
-								as="p"
-								animation="blurIn"
-								by="word"
+							<p
+								// as="p"
+								// animation="blurIn"
+								// by="word"
 								className="text-white"
 							>
 								{lang === "ru" ? "Максим Анисимов" : "Maxim Anisimov"}
-							</TextAnimate>
-							<TextAnimate
-								as="p"
-								animation="blurIn"
-								by="word"
+							</p>
+							<p
+								// as="p"
+								// animation="blurIn"
+								// by="word"
 								className="text-[#FAFAFA80]"
 							>
 								{lang === "ru" ? "UX/UI Дизайнер" : "UX/UI Designer"}
-							</TextAnimate>
+							</p>
 						</motion.div>
 					</div>
 					<motion.a
