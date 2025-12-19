@@ -62,13 +62,13 @@ function HomeComponent() {
 				className="md:absolute hidden md:block w-[400vh] translate-x-1/2 -translate-y-1/2 -top-1 right-70 h-[190vh] opacity-30 rounded-[100%] bottom-1/2 mix-blend-soft-light bg-[radial-gradient(88.6vh_47.2vh_at_center,#FAFAFA_0%,transparent_100%)]"
 			/>
 			<div />
-			<BlurFade
-				direction="up"
-				duration={0.6}
-				variant={{
-					hidden: { y: 100 },
-					visible: { y: 0 },
-				}}
+			<div
+				// direction="up"
+				// duration={0.6}
+				// variant={{
+				// 	hidden: { y: 100 },
+				// 	visible: { y: 0 },
+				// }}
 				className="flex flex-col gap-5 w-full max-w-[630px] rounded-2xl bg-[#1C1C1C] p-5 z-50"
 			>
 				<div className="flex md:flex-row flex-col gap-4 md:gap-0 justify-between">
@@ -207,9 +207,9 @@ function HomeComponent() {
 						</motion.a>
 					))}
 				</div>
-			</BlurFade>
+			</div>
 			<div />
-			{/* <Navigation active="main" /> */}
+			<Navigation active="main" />
 		</div>
 	);
 }
