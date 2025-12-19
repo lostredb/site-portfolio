@@ -106,10 +106,10 @@ function HomeComponent() {
 							</TextAnimate>
 						</motion.div>
 					</div>
-					<motion.a
-						initial={{ x: -30, opacity: 0 }}
-						animate={{ x: 0, opacity: 1 }}
-						transition={{ duration: 0.3, delay: 0.2, stiffness: 100 }}
+					<a
+						// initial={{ x: -30, opacity: 0 }}
+						// animate={{ x: 0, opacity: 1 }}
+						// transition={{ duration: 0.3, delay: 0.2, stiffness: 100 }}
 						target="_blank"
 						href={initialData?.link || "https://t.me/rNEZHu"}
 						className="w-fit"
@@ -123,7 +123,7 @@ function HomeComponent() {
 						>
 							{lang === "ru" ? "Обсудить проект" : "Contact me"}
 						</button>
-					</motion.a>
+					</a>
 				</div>
 				{lang === "ru" ? (
 					<motion.p
