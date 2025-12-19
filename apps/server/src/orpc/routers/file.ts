@@ -8,6 +8,7 @@ export const fileRouter = new Elysia({ prefix: "/file" })
 			const meta = await GetFileMetadata(params.id);
 
 			set.headers["Content-Type"] = meta.contentType;
+			set.headers["Cache-Control"] = `public, max-age=${60 * 60 * 24 * 365}`;
 			set.headers["Content-Disposition"] =
 				`attachment; filename="${encodeURIComponent(meta.fileName)}"`;
 
@@ -16,6 +17,7 @@ export const fileRouter = new Elysia({ prefix: "/file" })
 			return new Response(s3File.stream(), {
 				headers: {
 					"Content-Type": meta.contentType,
+					"Cache-Control": `public, max-age=${60 * 60 * 24 * 365}`,
 					"Content-Disposition": `attachment; filename="${encodeURIComponent(meta.fileName)}"`,
 				},
 			});
