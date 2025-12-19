@@ -62,13 +62,13 @@ function HomeComponent() {
 				className="md:absolute hidden md:block w-[400vh] translate-x-1/2 -translate-y-1/2 -top-1 right-70 h-[190vh] opacity-30 rounded-[100%] bottom-1/2 mix-blend-soft-light bg-[radial-gradient(88.6vh_47.2vh_at_center,#FAFAFA_0%,transparent_100%)]"
 			/>
 			<div />
-			<div
-				// direction="up"
-				// duration={0.6}
-				// variant={{
-				// 	hidden: { y: 100 },
-				// 	visible: { y: 0 },
-				// }}
+			<BlurFade
+				direction="up"
+				duration={0.6}
+				variant={{
+					hidden: { y: 100 },
+					visible: { y: 0 },
+				}}
 				className="flex flex-col gap-5 w-full max-w-[630px] rounded-2xl bg-[#1C1C1C] p-5 z-50"
 			>
 				<div className="flex md:flex-row flex-col gap-4 md:gap-0 justify-between">
@@ -82,34 +82,34 @@ function HomeComponent() {
 								className="size-12 rounded-[6px] overflow-hidden"
 							/>
 						</Link>
-						<div
-							// initial={{ x: -30, opacity: 0 }}
-							// animate={{ x: 0, opacity: 1 }}
-							// transition={{ duration: 0.3, delay: 0.1 }}
+						<motion.div
+							initial={{ x: -30, opacity: 0 }}
+							animate={{ x: 0, opacity: 1 }}
+							transition={{ duration: 0.3, delay: 0.1 }}
 							className="flex flex-col"
 						>
-							<p
-								// as="p"
-								// animation="blurIn"
-								// by="word"
+							<TextAnimate
+								as="p"
+								animation="blurIn"
+								by="word"
 								className="text-white"
 							>
 								{lang === "ru" ? "Максим Анисимов" : "Maxim Anisimov"}
-							</p>
-							<p
-								// as="p"
-								// animation="blurIn"
-								// by="word"
+							</TextAnimate>
+							<TextAnimate
+								as="p"
+								animation="blurIn"
+								by="word"
 								className="text-[#FAFAFA80]"
 							>
 								{lang === "ru" ? "UX/UI Дизайнер" : "UX/UI Designer"}
-							</p>
-						</div>
+							</TextAnimate>
+						</motion.div>
 					</div>
-					<a
-						// initial={{ x: -30, opacity: 0 }}
-						// animate={{ x: 0, opacity: 1 }}
-						// transition={{ duration: 0.3, delay: 0.2, stiffness: 100 }}
+					<motion.a
+						initial={{ x: -30, opacity: 0 }}
+						animate={{ x: 0, opacity: 1 }}
+						transition={{ duration: 0.3, delay: 0.2, stiffness: 100 }}
 						target="_blank"
 						href={initialData?.link || "https://t.me/rNEZHu"}
 						className="w-fit"
@@ -123,17 +123,17 @@ function HomeComponent() {
 						>
 							{lang === "ru" ? "Обсудить проект" : "Contact me"}
 						</button>
-					</a>
+					</motion.a>
 				</div>
 				{lang === "ru" ? (
-					<p
-						// initial={{ y: 100, opacity: 0 }}
-						// animate={{ y: 0, opacity: 1 }}
-						// transition={{
-						// 	duration: 0.3,
-						// 	delay: 0.2,
-						// 	stiffness: 100,
-						// }}
+					<motion.p
+						initial={{ y: 100, opacity: 0 }}
+						animate={{ y: 0, opacity: 1 }}
+						transition={{
+							duration: 0.3,
+							delay: 0.2,
+							stiffness: 100,
+						}}
 						className="whitespace-pre-line text-white leading-[130%]"
 					>
 						Уже больше трёх лет создаю сайты и интерфейсы — от простых лендингов
@@ -154,7 +154,7 @@ function HomeComponent() {
 						<br />
 						Загляни в моё портфолио — возможно, именно твой проект станет
 						следующим.
-					</p>
+					</motion.p>
 				) : (
 					<motion.p
 						initial={{ y: 40, opacity: 0 }}
@@ -207,7 +207,7 @@ function HomeComponent() {
 						</a>
 					))}
 				</div>
-			</div>
+			</BlurFade>
 			<div />
 			<Navigation active="main" />
 		</div>
