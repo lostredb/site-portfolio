@@ -49,16 +49,16 @@ function HomeComponent() {
 				after:bg-[url('/bg.svg')] after:bg-center after:bg-cover
 				after:opacity-5 after:pointer-events-none"
 			/>
-			<motion.div
-				initial={{ y: 100, opacity: 0 }}
-				animate={{ y: 0, opacity: 1 }}
-				transition={{ duration: 0.6, stiffness: 100 }}
+			<div
+				// initial={{ y: 100, opacity: 0 }}
+				// animate={{ y: 0, opacity: 1 }}
+				// transition={{ duration: 0.6, stiffness: 100 }}
 				className="md:absolute hidden md:block w-[200vh] -translate-x-1/2 translate-y-1/2 left-1/10 h-[100vh] opacity-30 rounded-[100%] bottom-1/2 mix-blend-soft-light bg-[radial-gradient(88.6vh_47.2vh_at_center,#FAFAFA_0%,transparent_100%)]"
 			/>
-			<motion.div
-				initial={{ y: -100, opacity: 0 }}
-				animate={{ y: 0, opacity: 1 }}
-				transition={{ duration: 0.6, stiffness: 100 }}
+			<div
+				// initial={{ y: -100, opacity: 0 }}
+				// animate={{ y: 0, opacity: 1 }}
+				// transition={{ duration: 0.6, stiffness: 100 }}
 				className="md:absolute hidden md:block w-[400vh] translate-x-1/2 -translate-y-1/2 -top-1 right-70 h-[190vh] opacity-30 rounded-[100%] bottom-1/2 mix-blend-soft-light bg-[radial-gradient(88.6vh_47.2vh_at_center,#FAFAFA_0%,transparent_100%)]"
 			/>
 			<div />
@@ -82,34 +82,34 @@ function HomeComponent() {
 								className="size-12 rounded-[6px] overflow-hidden"
 							/>
 						</Link>
-						<motion.div
-							initial={{ x: -30, opacity: 0 }}
-							animate={{ x: 0, opacity: 1 }}
-							transition={{ duration: 0.3, delay: 0.1 }}
+						<div
+							// initial={{ x: -30, opacity: 0 }}
+							// animate={{ x: 0, opacity: 1 }}
+							// transition={{ duration: 0.3, delay: 0.1 }}
 							className="flex flex-col"
 						>
-							<TextAnimate
-								as="p"
-								animation="blurIn"
-								by="word"
+							<p
+								// as="p"
+								// animation="blurIn"
+								// by="word"
 								className="text-white"
 							>
 								{lang === "ru" ? "Максим Анисимов" : "Maxim Anisimov"}
-							</TextAnimate>
-							<TextAnimate
-								as="p"
-								animation="blurIn"
-								by="word"
+							</p>
+							<p
+								// as="p"
+								// animation="blurIn"
+								// by="word"
 								className="text-[#FAFAFA80]"
 							>
 								{lang === "ru" ? "UX/UI Дизайнер" : "UX/UI Designer"}
-							</TextAnimate>
-						</motion.div>
+							</p>
+						</div>
 					</div>
-					{/* <motion.a
-						initial={{ x: -30, opacity: 0 }}
-						animate={{ x: 0, opacity: 1 }}
-						transition={{ duration: 0.3, delay: 0.2, stiffness: 100 }}
+					<a
+						// initial={{ x: -30, opacity: 0 }}
+						// animate={{ x: 0, opacity: 1 }}
+						// transition={{ duration: 0.3, delay: 0.2, stiffness: 100 }}
 						target="_blank"
 						href={initialData?.link || "https://t.me/rNEZHu"}
 						className="w-fit"
@@ -123,17 +123,17 @@ function HomeComponent() {
 						>
 							{lang === "ru" ? "Обсудить проект" : "Contact me"}
 						</button>
-					</motion.a> */}
+					</a>
 				</div>
 				{lang === "ru" ? (
-					<motion.p
-						initial={{ y: 100, opacity: 0 }}
-						animate={{ y: 0, opacity: 1 }}
-						transition={{
-							duration: 0.3,
-							delay: 0.2,
-							stiffness: 100,
-						}}
+					<p
+						// initial={{ y: 100, opacity: 0 }}
+						// animate={{ y: 0, opacity: 1 }}
+						// transition={{
+						// 	duration: 0.3,
+						// 	delay: 0.2,
+						// 	stiffness: 100,
+						// }}
 						className="whitespace-pre-line text-white leading-[130%]"
 					>
 						Уже больше трёх лет создаю сайты и интерфейсы — от простых лендингов
@@ -154,16 +154,16 @@ function HomeComponent() {
 						<br />
 						Загляни в моё портфолио — возможно, именно твой проект станет
 						следующим.
-					</motion.p>
+					</p>
 				) : (
-					<motion.p
-						initial={{ y: 40, opacity: 0 }}
-						animate={{ y: 0, opacity: 1 }}
-						transition={{
-							duration: 0.6,
-							delay: 0.2,
-							stiffness: 100,
-						}}
+					<p
+						// initial={{ y: 40, opacity: 0 }}
+						// animate={{ y: 0, opacity: 1 }}
+						// transition={{
+						// 	duration: 0.6,
+						// 	delay: 0.2,
+						// 	stiffness: 100,
+						// }}
 						className="whitespace-pre-line text-white leading-[130%]"
 					>
 						For over three years, I’ve been designing websites and interfaces —
@@ -182,19 +182,19 @@ function HomeComponent() {
 						solve business problems and help users feel right at home. <br />
 						<br />
 						Take a look at my portfolio — your project might be the next one.
-					</motion.p>
+					</p>
 				)}
 
 				<div className="flex flex-wrap gap-3">
 					{initialData?.socials.map((s, index) => (
-						<motion.a
-							initial={{ x: 30, opacity: 0 }}
-							animate={{ x: 0, opacity: 1 }}
-							transition={{
-								duration: 0.3,
-								delay: (index + 2) * 0.1,
-								stiffness: 100,
-							}}
+						<a
+							// initial={{ x: 30, opacity: 0 }}
+							// animate={{ x: 0, opacity: 1 }}
+							// transition={{
+							// 	duration: 0.3,
+							// 	delay: (index + 2) * 0.1,
+							// 	stiffness: 100,
+							// }}
 							key={s.id}
 							target="_blank"
 							href={s?.link || ""}
@@ -204,7 +204,7 @@ function HomeComponent() {
 								alt=""
 								className="size-9 rounded-sm overflow-hidden"
 							/>
-						</motion.a>
+						</a>
 					))}
 				</div>
 			</BlurFade>
