@@ -157,13 +157,13 @@ function HomeComponent() {
 					</p>
 				) : (
 					<motion.p
-						// initial={{ y: 40, opacity: 0 }}
-						// animate={{ y: 0, opacity: 1 }}
-						// transition={{
-						// 	duration: 0.6,
-						// 	delay: 0.2,
-						// 	stiffness: 100,
-						// }}
+						initial={{ y: 40, opacity: 0 }}
+						animate={{ y: 0, opacity: 1 }}
+						transition={{
+							duration: 0.6,
+							delay: 0.2,
+							stiffness: 100,
+						}}
 						className="whitespace-pre-line text-white leading-[130%]"
 					>
 						For over three years, I’ve been designing websites and interfaces —
