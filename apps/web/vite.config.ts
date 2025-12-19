@@ -15,5 +15,6 @@ export default defineConfig({
 	],
 	server: {
 		allowedHosts: ["demo.w1png.ru"],
+		host: "0.0.0.0",
 	},
 });

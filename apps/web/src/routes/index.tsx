@@ -39,7 +39,7 @@ function HomeComponent() {
 	});
 
 	return (
-		<div className="relative overflow-hidden min-h-screen px-4 md:px-0 w-full flex flex-col justify-between items-center bg-black/50">
+		<div className="relative will-change-auto overflow-hidden min-h-screen px-4 md:px-0 w-full flex flex-col justify-between items-center bg-black/50">
 			<div
 				className="absolute inset-0 
 				before:content-[''] before:absolute before:inset-0
@@ -53,13 +53,13 @@ function HomeComponent() {
 				initial={{ y: 100, opacity: 0 }}
 				animate={{ y: 0, opacity: 1 }}
 				transition={{ duration: 0.6, stiffness: 100 }}
-				className="md:absolute hidden md:block w-[200vh] -translate-x-1/2 translate-y-1/2 left-1/10 h-[100vh] opacity-30 rounded-[100%] bottom-1/2 mix-blend-soft-light bg-[radial-gradient(88.6vh_47.2vh_at_center,#FAFAFA_0%,transparent_100%)]"
+				className="md:absolute hidden md:block w-[200vh] will-change-auto -translate-x-1/2 translate-y-1/2 left-1/10 h-[100vh] opacity-30 rounded-[100%] bottom-1/2 mix-blend-soft-light bg-[radial-gradient(88.6vh_47.2vh_at_center,#FAFAFA_0%,transparent_100%)]"
 			/>
 			<motion.div
 				initial={{ y: -100, opacity: 0 }}
 				animate={{ y: 0, opacity: 1 }}
 				transition={{ duration: 0.6, stiffness: 100 }}
-				className="md:absolute hidden md:block w-[400vh] translate-x-1/2 -translate-y-1/2 -top-1 right-70 h-[190vh] opacity-30 rounded-[100%] bottom-1/2 mix-blend-soft-light bg-[radial-gradient(88.6vh_47.2vh_at_center,#FAFAFA_0%,transparent_100%)]"
+				className="md:absolute hidden md:block w-[400vh] will-change-auto translate-x-1/2 -translate-y-1/2 -top-1 right-70 h-[190vh] opacity-30 rounded-[100%] bottom-1/2 mix-blend-soft-light bg-[radial-gradient(88.6vh_47.2vh_at_center,#FAFAFA_0%,transparent_100%)]"
 			/>
 			<div />
 			<BlurFade
@@ -69,7 +69,7 @@ function HomeComponent() {
 					hidden: { y: 100 },
 					visible: { y: 0 },
 				}}
-				className="flex flex-col gap-5 w-full max-w-[630px] rounded-2xl bg-[#1C1C1C] p-5 z-50"
+				className="flex flex-col gap-5 w-full max-w-[630px] will-change-auto rounded-2xl bg-[#1C1C1C] p-5 z-50"
 			>
 				<div className="flex md:flex-row flex-col gap-4 md:gap-0 justify-between">
 					<div className="flex gap-2">
@@ -86,13 +86,13 @@ function HomeComponent() {
 							initial={{ x: -30, opacity: 0 }}
 							animate={{ x: 0, opacity: 1 }}
 							transition={{ duration: 0.3, delay: 0.1 }}
-							className="flex flex-col"
+							className="flex flex-col will-change-auto"
 						>
 							<TextAnimate
 								as="p"
 								animation="blurIn"
 								by="word"
-								className="text-white"
+								className="text-white will-change-auto"
 							>
 								{lang === "ru" ? "Максим Анисимов" : "Maxim Anisimov"}
 							</TextAnimate>
@@ -100,7 +100,7 @@ function HomeComponent() {
 								as="p"
 								animation="blurIn"
 								by="word"
-								className="text-[#FAFAFA80]"
+								className="text-[#FAFAFA80] will-change-auto"
 							>
 								{lang === "ru" ? "UX/UI Дизайнер" : "UX/UI Designer"}
 							</TextAnimate>
@@ -112,7 +112,7 @@ function HomeComponent() {
 						transition={{ duration: 0.3, delay: 0.2, stiffness: 100 }}
 						target="_blank"
 						href={initialData?.link || "https://t.me/rNEZHu"}
-						className="w-fit"
+						className="w-fit will-change-auto"
 					>
 						<button
 							type="button"
@@ -134,7 +134,7 @@ function HomeComponent() {
 							delay: 0.2,
 							stiffness: 100,
 						}}
-						className="whitespace-pre-line text-white leading-[130%]"
+						className="whitespace-pre-line text-white leading-[130%] will-change-auto"
 					>
 						Уже больше трёх лет создаю сайты и интерфейсы — от простых лендингов
 						до сложных веб-проектов. <br />
@@ -164,7 +164,7 @@ function HomeComponent() {
 							delay: 0.2,
 							stiffness: 100,
 						}}
-						className="whitespace-pre-line text-white leading-[130%]"
+						className="whitespace-pre-line text-white leading-[130%] will-change-auto"
 					>
 						For over three years, I’ve been designing websites and interfaces —
 						from simple landing pages to complex web projects. <br />I work in
@@ -198,6 +198,7 @@ function HomeComponent() {
 							key={s.id}
 							target="_blank"
 							href={s?.link || ""}
+							className="will-change-auto"
 						>
 							<Image
 								src={s?.logo || ""}
