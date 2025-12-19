@@ -336,7 +336,7 @@ function RouteComponent() {
 								className="p-3 flex justify-between bg-[#1c1c1c] text-white rounded-lg border border-white/10 items-center"
 							>
 								<div className="flex flex-col gap-1">
-									<p>Руссикй: {c.rus}</p>
+									<p>Русский: {c.rus}</p>
 									<p>Английский: {c.eng}</p>
 								</div>
 								<button
